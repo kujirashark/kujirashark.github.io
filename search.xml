@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>阿里云连接mysql报错解决</title>
+      <link href="/2018/05/14/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9E%E6%8E%A5mysql%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/"/>
+      <url>/2018/05/14/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9E%E6%8E%A5mysql%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/</url>
+      <content type="html"><![CDATA[<h4 id="连接报错2003"><a href="#连接报错2003" class="headerlink" title="连接报错2003"></a>连接报错2003</h4><h5 id="先检查linux系统的防火墙是否开启"><a href="#先检查linux系统的防火墙是否开启" class="headerlink" title="先检查linux系统的防火墙是否开启"></a>先检查linux系统的防火墙是否开启</h5><p>1.查看防火墙运行状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@izm5eifctth7468z9e6fz0z ~]# firewall-cmd --state</span><br><span class="line">running</span><br></pre></td></tr></table></figure><p>2.如果显示running就表示系统防火墙已经开启</p><p>这样的话需要给防火墙打开数据库的3306端口</p><p>以3306端口为例打开端口的命令为:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=3306/tcp --permanent --zone=public</span><br></pre></td></tr></table></figure><h5 id="检查阿里云是否打开数据库对应的端口"><a href="#检查阿里云是否打开数据库对应的端口" class="headerlink" title="检查阿里云是否打开数据库对应的端口"></a>检查阿里云是否打开数据库对应的端口</h5><p>登录阿里云官网 —-进入实例—安全组规则 —入方向—设置如下:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">授权策略协议类型端口范围授权类型授权对象  描述   优先级</span><br><span class="line">允许      自定义       TCP      3306/3306  地址段访问  0.0.0.0/0     1</span><br></pre></td></tr></table></figure><h4 id="navicat连接阿里云服务器报1130错误的解决方法"><a href="#navicat连接阿里云服务器报1130错误的解决方法" class="headerlink" title="navicat连接阿里云服务器报1130错误的解决方法"></a>navicat连接阿里云服务器报1130错误的解决方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">今天使用阿里云服务器，用Navicat连接阿里云服务器，连接过程中报1130错误，</span><br><span class="line"></span><br><span class="line">ERROR 1130: Host &apos;192.168.1.3&apos; is not allowed to connect to thisMySQL server </span><br><span class="line"></span><br><span class="line">解决方法： </span><br><span class="line"></span><br><span class="line">1。改表法。可能是你的帐号不允许从远程登陆，只能在localhost。这个时候只要在localhost的那台电脑，登入mysql后，更改&quot;mysql&quot; 数据库里的 &quot;user&quot; 表里的 &quot;host&quot;项，从&quot;localhost&quot;改称&quot;%&quot; </span><br><span class="line"></span><br><span class="line">或者服务器操作熟练地话直接写数据库授权</span><br><span class="line"></span><br><span class="line">grant all privileges on 数据库名.* to 用户名@&apos;%&apos; identified by &apos;用户密码&apos;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+        <tags>
+            
+            <tag> MySQL错误2003 1130 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Github生成ssh密钥</title>
       <link href="/2018/05/13/Github%E7%94%9F%E6%88%90ssh%E5%AF%86%E9%92%A5/"/>
       <url>/2018/05/13/Github%E7%94%9F%E6%88%90ssh%E5%AF%86%E9%92%A5/</url>
