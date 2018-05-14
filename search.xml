@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>about</title>
+      <link href="/2018/05/13/about/"/>
+      <url>/2018/05/13/about/</url>
+      <content type="html"><![CDATA[<h4 id="关于我自己"><a href="#关于我自己" class="headerlink" title="关于我自己"></a>关于我自己</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">优秀的Python攻城狮</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>tags</title>
+      <link href="/2018/05/13/tags/"/>
+      <url>/2018/05/13/tags/</url>
+      <content type="html"><![CDATA[<h3 id="学习python"><a href="#学习python" class="headerlink" title="学习python"></a>学习python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>categories</title>
+      <link href="/2018/05/13/categories/"/>
+      <url>/2018/05/13/categories/</url>
+      <content type="html"><![CDATA[<h3 id="学习资源归类"><a href="#学习资源归类" class="headerlink" title="学习资源归类"></a>学习资源归类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. Python</span><br><span class="line">2. javaScript</span><br><span class="line">3. Linux</span><br><span class="line">4. MySQL</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+    </entry>
+    
+    <entry>
       <title>Github生成ssh密钥</title>
       <link href="/2018/05/13/Github%E7%94%9F%E6%88%90ssh%E5%AF%86%E9%92%A5/"/>
       <url>/2018/05/13/Github%E7%94%9F%E6%88%90ssh%E5%AF%86%E9%92%A5/</url>
