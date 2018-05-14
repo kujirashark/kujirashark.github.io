@@ -12,15 +12,6 @@
     </entry>
     
     <entry>
-      <title>tags</title>
-      <link href="/2018/05/13/tags/"/>
-      <url>/2018/05/13/tags/</url>
-      <content type="html"><![CDATA[<h3 id="学习python"><a href="#学习python" class="headerlink" title="学习python"></a>学习python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-    </entry>
-    
-    <entry>
       <title>categories</title>
       <link href="/2018/05/13/categories/"/>
       <url>/2018/05/13/categories/</url>
