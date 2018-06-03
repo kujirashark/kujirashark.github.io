@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Django查询," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Django中模型查询1，定义属性Django根据属性的类型确定以下信息：  当前选择的数据库支持字段的类型 渲染管理表单时使用的默认html控件 在管理站点最低限度的验证  django会为表创建自动增长的主键列，每个模型只能有一个主键列，如果使用选项设置某属性为主键列后django不会再创建自动增长的主键列。  默认创建的主键列属性为id，可以使用pk代替，pk全拼为primary key。">
+<meta name="keywords" content="Django查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django中模型查询">
+<meta property="og:url" content="http://yoursite.com/2018/06/03/Django中模型查询/index.html">
+<meta property="og:site_name" content="Mr. Lee&#39;s blog">
+<meta property="og:description" content="Django中模型查询1，定义属性Django根据属性的类型确定以下信息：  当前选择的数据库支持字段的类型 渲染管理表单时使用的默认html控件 在管理站点最低限度的验证  django会为表创建自动增长的主键列，每个模型只能有一个主键列，如果使用选项设置某属性为主键列后django不会再创建自动增长的主键列。  默认创建的主键列属性为id，可以使用pk代替，pk全拼为primary key。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-03T10:17:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django中模型查询">
+<meta name="twitter:description" content="Django中模型查询1，定义属性Django根据属性的类型确定以下信息：  当前选择的数据库支持字段的类型 渲染管理表单时使用的默认html控件 在管理站点最低限度的验证  django会为表创建自动增长的主键列，每个模型只能有一个主键列，如果使用选项设置某属性为主键列后django不会再创建自动增长的主键列。  默认创建的主键列属性为id，可以使用pk代替，pk全拼为primary key。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/03/Django中模型查询/"/>
+
+
+
+
+
+  <title>Django中模型查询 | Mr. Lee's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr. Lee's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">人生苦短我用Python</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/03/Django中模型查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr. Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr. Lee's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Django中模型查询</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T18:16:25+08:00">
+                2018-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,242
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Django中模型查询"><a href="#Django中模型查询" class="headerlink" title="Django中模型查询"></a>Django中模型查询</h3><h5 id="1，定义属性"><a href="#1，定义属性" class="headerlink" title="1，定义属性"></a>1，定义属性</h5><p>Django根据属性的类型确定以下信息：</p>
+<ul>
+<li>当前选择的数据库支持字段的类型</li>
+<li>渲染管理表单时使用的默认html控件</li>
+<li>在管理站点最低限度的验证</li>
+</ul>
+<p>django会为表创建自动增长的主键列，每个模型只能有一个主键列，如果使用选项设置某属性为主键列后django不会再创建自动增长的主键列。</p>
+<ul>
+<li>默认创建的主键列属性为id，可以使用pk代替，pk全拼为primary key。</li>
+<li>注意：pk是主键的别名，若主键名为id2，那么pk是id2的别名。</li>
+</ul>
+<p>属性命名限制：</p>
+<ul>
+<li>不能是python的保留关键字。</li>
+<li>不允许使用连续的下划线，这是由django的查询方式决定的</li>
+<li>定义属性时需要指定字段类型，通过字段类型的参数指定选项，语法如下：<br><strong>属性=models.字段类型(选项)</strong></li>
+</ul>
+<h5 id="2，字段类型"><a href="#2，字段类型" class="headerlink" title="2，字段类型"></a>2，字段类型</h5><p>使用时需要引入django.db.models包，字段类型如下：</p>
+<ul>
+<li>AutoField：自动增长的IntegerField，通常不用指定，不指定时Django会自动创建属性名为id的自动增长属性。</li>
+<li>BooleanField：布尔字段，值为True或False。</li>
+<li>NullBooleanField：支持Null、True、False三种值。</li>
+<li>CharField(max_length=字符长度)：字符串。<br>参数max_length表示最大字符个数。</li>
+<li>TextField：大文本字段，一般超过4000个字符时使用。</li>
+<li>IntegerField：整数。</li>
+<li>DecimalField(max_digits=None, decimal_places=None)：十进制浮点数。<br>++ 参数max_digits表示总位数。<br>++ 参数decimal_places表示小数位数。</li>
+<li>FloatField：浮点数。</li>
+<li>DateField[auto_now=False, auto_now_add=False])：日期。<br>++ 参数auto_now表示每次保存对象时，自动设置该字段为当前时间，用于”最后一次修改”的时间戳，它总是使用当前日期，默认为false。<br>++ 参数auto_now_add表示当对象第一次被创建时自动设置当前时间，用于创建的时间戳，它总是使用当前日期，默认为false。<br>++参数auto_now_add和auto_now是相互排斥的，组合将会发生错误。</li>
+<li>TimeField：时间，参数同DateField。</li>
+<li>DateTimeField：日期时间，参数同DateField。</li>
+<li>FileField：上传文件字段。</li>
+<li>ImageField：继承于FileField，对上传的内容进行校验，确保是有效的图片。</li>
+</ul>
+<h5 id="3，选项"><a href="#3，选项" class="headerlink" title="3，选项"></a>3，选项</h5><p>通过选项实现对字段的约束，选项如下：</p>
+<ul>
+<li>null：如果为True，表示允许为空，默认值是False。</li>
+<li>blank：如果为True，则该字段允许为空白，默认值是False。</li>
+<li>对比：null是数据库范畴的概念，blank是表单验证证范畴的。</li>
+<li>db_column：字段的名称，如果未指定，则使用属性的名称。</li>
+<li>db_index：若值为True, 则在表中会为此字段创建索引，默认值是False。</li>
+<li>default：默认值。</li>
+<li>primary_key：若为True，则该字段会成为模型的主键字段，默认值是False，一般作为AutoField的选项使用。</li>
+<li>unique：如果为True, 这个字段在表中必须有唯一值，默认值是False。</li>
+</ul>
+<h5 id="4，字段查询"><a href="#4，字段查询" class="headerlink" title="4，字段查询"></a>4，字段查询</h5><p>all():返回模型类对应表格中的所有数据。<br>例：查询图书所有信息。<br>BookInfo.objects.all();-&gt;select * from booktest_bookinfo;</p>
+<p>get():返回表格中满足条件的一条数据。<br>如果查到多条数据，则抛异常：MultipleObjectsReturned<br>查询不到数据，则抛异常：DoesNotExist<br>例：查询图书id为3的图书信息。<br>BookInfo.objects.get(id=3) –&gt; select * from booktest_bookinfo where id = 3;</p>
+<p>filter():参数写查询条件，返回满足条件QuerySet集合数据。<br>条件格式：<br><strong>模型类属性名</strong>__条件名=值<br>注意：此处是模型类属性名，不是表中的字段名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1.  判等 exact。</span><br><span class="line">例：查询编号为1的图书。</span><br><span class="line">BookInfo.object.filter(id=1)</span><br><span class="line">BookInfo.object.filter(id__exact=1)此处的exact可以省略</span><br><span class="line"></span><br><span class="line">2.  模糊查询 like</span><br><span class="line">例：查询书名包含&apos;传&apos;的图书。contains</span><br><span class="line">BookInfo.objects.filter(btitle__contains=’传’)</span><br><span class="line">例：查询书名以&apos;部&apos;结尾的图书 endswith 开头:startswith</span><br><span class="line">BookInfo.objects.filter(btitle__endswith=’部’)</span><br><span class="line">BookInfo.objects.filter(btitle__startswith=’天’)</span><br><span class="line"></span><br><span class="line">3.  空查询 where 字段名 isnull</span><br><span class="line">例：查询书名不为空的图书。isnull</span><br><span class="line">BookInfo.objects.filter(btitle__isnull=False)</span><br><span class="line"></span><br><span class="line">4.  范围查询 where id in (1,3,5) </span><br><span class="line">例：查询编号为1或3或5的图书。In</span><br><span class="line">BookInfo.objects.filter(id__in=[1,3,5])</span><br><span class="line"></span><br><span class="line">5.  比较查询 gt lt(less than) gte(equal) lte</span><br><span class="line">例：查询编号大于等于3的图书。</span><br><span class="line">BookInfo.objects.filter(id__gte=3)</span><br><span class="line"></span><br><span class="line">6.  日期查询</span><br><span class="line">例：查询1980年发表的图书。</span><br><span class="line">BookInfo.objects.filter(bpub_date__year = 1980)</span><br><span class="line">例：查询1980年1月1日后发表的图。</span><br><span class="line">BookInfo.objects.filter(bpub_date__gt = date(1980,1,1))</span><br><span class="line"></span><br><span class="line">7. exclude:返回不满足条件的数据。</span><br><span class="line">例：查询id不为3的图书信息。</span><br><span class="line">BookInfo.objects.exclude(id=3)123456789101112131415161718192021222324252627282930313233</span><br></pre></td></tr></table></figure>
+<h5 id="5，F对象"><a href="#5，F对象" class="headerlink" title="5，F对象"></a>5，F对象</h5><p>作用：用于类属性之间的比较条件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">使用之前需要先导入：</span><br><span class="line">from django.db.models import F</span><br><span class="line">例：查询图书阅读量大于评论量图书信息。where bread &gt; bcomment</span><br><span class="line">BookInfo.objects.filter(bread__gt = F(‘bcomment’))</span><br><span class="line">例：查询图书阅读量大于2倍评论量图书信息。</span><br><span class="line">BookInfo.objects.filter(bread__gt=F(‘bcomment’)*2)</span><br></pre></td></tr></table></figure>
+<h5 id="6，Q对象"><a href="#6，Q对象" class="headerlink" title="6，Q对象"></a>6，Q对象</h5><p>作用：用于查询时的逻辑条件。可以对Q对象进行&amp;|~操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">使用之前需要先导入：</span><br><span class="line">from django.db.models import Q</span><br><span class="line">例：查询id大于3且阅读大于30的图书的信息。</span><br><span class="line">BookInfo.objects.filter(id__gt=3, bread__gt=30)</span><br><span class="line">BooInfo.objects.filter(Q(id__gt=3) &amp; Q(bread__gt=3))</span><br><span class="line">例：查询id大于3或者阅读大于30的图书的信息。</span><br><span class="line">BookInfo.objects.filter(Q(id__gt=3) | Q(bread__gt=30))</span><br><span class="line">例：查询id不等于3图书的信息。</span><br><span class="line">BookInfo.objects.filter(~Q(id=3))123456789</span><br></pre></td></tr></table></figure>
+<h5 id="7，order-by-返回QuerySet"><a href="#7，order-by-返回QuerySet" class="headerlink" title="7，order_by 返回QuerySet"></a>7，order_by 返回QuerySet</h5><p>作用：进行查询结果进行排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例：查询所有图书的信息，按照id从小到大进行排序。</span><br><span class="line">BookInfo.objects.all()order_by(&apos;id&apos;)</span><br><span class="line">例：查询所有图书的信息，按照id从大到小进行排序。</span><br><span class="line">BookInfo.objects.all().order_by(&apos;-id&apos;)</span><br><span class="line">例：把id大于3的图书信息按阅读量从大到小排序显示；</span><br><span class="line">BookInfo.objects.filter(id__gt=3).order_by(&apos;-bread&apos;)123456</span><br></pre></td></tr></table></figure>
+<h5 id="8，聚合函数"><a href="#8，聚合函数" class="headerlink" title="8，聚合函数"></a>8，聚合函数</h5><p>作用：对查询结果进行聚合操作。<br>sum count max min avg<br>aggregate：调用这个函数来使用聚合。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">使用前需先导入聚合类：</span><br><span class="line">from django.db.models import Sum,Count,Max,Min,Avg</span><br><span class="line">例：查询所有图书的数目。select count(*) from booktest_bookinfo;</span><br><span class="line">BookInfo.objects.aggregate(Count(&apos;id&apos;))</span><br><span class="line">&#123;&apos;id__count&apos;: 5&#125; 注意返回值类型及键名</span><br><span class="line">例：查询所有图书阅读量的总和。</span><br><span class="line">BookInfo.objects.aggregate(Sum(‘bread’))</span><br><span class="line">&#123;‘bread__sum’:120&#125;  注意返回值类型及键名12345678</span><br></pre></td></tr></table></figure>
+<p>count函数<br>作用：统计满足条件数据的数目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例：统计所有图书的数目。</span><br><span class="line">BookInfo.objects.all().count()</span><br><span class="line">例：统计id大于3的所有图书的数目。</span><br><span class="line">BookInfo.objects.filter(id__gt = 3).count()1234</span><br></pre></td></tr></table></figure>
+<h5 id="9，查询相关函数返回值总结："><a href="#9，查询相关函数返回值总结：" class="headerlink" title="9，查询相关函数返回值总结："></a>9，查询相关函数返回值总结：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">get:返回一个对象</span><br><span class="line">all:QuerySet(也就是[])</span><br><span class="line">filter:QuerySet</span><br><span class="line">exclude:QuerySet</span><br><span class="line">order_by:QuerySet</span><br><span class="line">aggregate:字典</span><br><span class="line">count:值1234567</span><br></pre></td></tr></table></figure>
+<h5 id="10，查询集"><a href="#10，查询集" class="headerlink" title="10，查询集"></a>10，查询集</h5><blockquote>
+<p>all, filter, exclude, order_by调用这些函数会产生一个查询集，可以在查询集上继续调用这些函数。</p>
+</blockquote>
+<p>查询集特性：</p>
+<ul>
+<li>1）惰性查询：只有在实际使用查询集中的数据的时候才会发生对数据库的真正查询。</li>
+<li>2）缓存：当使用的是同一个查询集时，第一次的时候会发生实际数据库的查询，然后把结果缓存起来，之后再使用这个查询集时，使用的是缓存中的结果。</li>
+</ul>
+<p>限制查询集：</p>
+<blockquote>
+<p>可以对一个查询集进行取下标或者切片操作来限制查询集的结果。</p>
+</blockquote>
+<ul>
+<li>b[0]就是取出查询集的第一条数据，</li>
+<li>b[0:1].get()也可取出查询集的第一条数据。</li>
+<li>如果b[0]不存在，会抛出IndexError异常，</li>
+<li>如果b[0:1].get()不存在，会抛出DoesNotExist异常。</li>
+</ul>
+<blockquote>
+<p>对一个查询集进行切片操作会产生一个新的查询集，下标不允许为负数。</p>
+</blockquote>
+<ul>
+<li>exists:判断一个查询集中是否有数据。<br>有返回True，没有返回False</li>
+</ul>
+<h5 id="11，模型类关系"><a href="#11，模型类关系" class="headerlink" title="11，模型类关系"></a>11，模型类关系</h5><p>1）一对多关系<br>例：图书类-英雄类<br>models.ForeignKey() 定义在多的类中。</p>
+<p>2）多对多关系<br>例：新闻类-新闻类型类<br>models.ManyToManyField() 定义在哪个类中都可以。</p>
+<p>3）一对一关系<br>例：员工基本信息类-员工详细信息类<br>models.OneToOneField() 定义在哪个类中都可以。</p>
+<h5 id="12，关联查询（一对多）"><a href="#12，关联查询（一对多）" class="headerlink" title="12，关联查询（一对多）"></a>12，关联查询（一对多）</h5><p>在一对多关系中，一对应的类我们把它叫做一类，多对应的那个类我们把它叫做多类，我们把多类中定义的建立关联的类属性叫做关联属性。</p>
+<h6 id="A、通过对象执行关联查询"><a href="#A、通过对象执行关联查询" class="headerlink" title="A、通过对象执行关联查询"></a>A、通过对象执行关联查询</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">例：查询图书id为1的所有英雄的信息。</span><br><span class="line">    b = BookInfo.objects.get(id=1)</span><br><span class="line">    b.heroinfo_set.all()</span><br><span class="line"></span><br><span class="line">例：查询id为1的英雄所属图书信息。</span><br><span class="line">    h = HeroInfo.objects.get(id=1)</span><br><span class="line">    h.hbook</span><br><span class="line">    h.hbook_id12345678</span><br></pre></td></tr></table></figure>
+<p>格式：</p>
+<ul>
+<li><p>由一类的对象查询多类的时候：</p>
+<blockquote>
+<p>一类的对象.多类名小写_set.all() #查询所用数据</p>
+</blockquote>
+</li>
+<li><p>由多类的对象查询一类的时候：</p>
+<blockquote>
+<p>多类的对象.关联属性 #查询多类的对象对应的一类的对象</p>
+</blockquote>
+</li>
+<li><p>由多类的对象查询一类对象的id时候：</p>
+<blockquote>
+<p>多类的对象. 关联属性_id</p>
+</blockquote>
+</li>
+</ul>
+<h6 id="B、通过模型类实现关联查询："><a href="#B、通过模型类实现关联查询：" class="headerlink" title="B、通过模型类实现关联查询："></a>B、通过模型类实现关联查询：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">例：查询图书，要求图书中英雄的描述包含&apos;八&apos;。Join</span><br><span class="line">BookInfo.objects.filter(heroinfo__hcomment__contains=&apos;八&apos;)</span><br><span class="line"></span><br><span class="line">例：查询图书，要求图书中的英雄的id大于3.</span><br><span class="line">BookInfo.objects.filter(heroinfo__id__gt=3)</span><br><span class="line"></span><br><span class="line">例：查询书名为“天龙八部”的所有英雄。</span><br><span class="line">HeroInfo.objects.filter(hbook__btitle = &apos;天龙八部&apos;)12345678</span><br></pre></td></tr></table></figure>
+<p>格式：</p>
+<ul>
+<li>通过多类的条件查询一类的数据：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一类名.objects.filter(多类名小写__多类属性名__条件名=值)1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过一类的条件查询多类的数据：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">多类名.objects.filter(关联属性__一类属性名__条件名=值)1</span><br></pre></td></tr></table></figure>
+<h5 id="13，自关联-特殊的一对多的关系"><a href="#13，自关联-特殊的一对多的关系" class="headerlink" title="13，自关联,特殊的一对多的关系"></a>13，自关联,特殊的一对多的关系</h5><p>对于地区信息、分类信息等数据，表结构非常类似，每个表的数据量十分有限，为了充分利用数据表的大量数据存储功能，可以可以设计成一张表，内部的关系字段指向本表的主键，这就是自关联的表结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#定义地区模型类，存储省、市、区县信息</span><br><span class="line">class AreaInfo(models.Model):</span><br><span class="line">    atitle=models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">    # 关系属性使用self指向本类，要求null和blank允许为空，因为一级数据是没有父级的。</span><br><span class="line"></span><br><span class="line">    aParent=models.ForeignKey(&apos;self&apos;,null=True,blank=True)1234567</span><br></pre></td></tr></table></figure>
+<h5 id="14，管理器"><a href="#14，管理器" class="headerlink" title="14，管理器"></a>14，管理器</h5><p>BookInfo.objects.all()-&gt;objects是一个什么东西呢？<br>答：objects是Django帮我自动生成的管理器，通过这个管理器可以实现对数据的查询。</p>
+<p>objects是models.Manger类的一个对象。自定义管理器之后Django不再帮我们生成默认的objects管理器。</p>
+<p>1)自定义一个管理器类，这个类集成models.Manger类。<br>2)再在具体的模型类里定义一个自定义管理器类的对象。</p>
+<blockquote>
+<p>自定义管理器类的应用场景：</p>
+</blockquote>
+<ul>
+<li>1）改变查询的结果集。<br>比如调用BookInfo.books.all()返回的是没有删除的图书的数据。</li>
+<li>2）在管理器类中定义一个方法帮我们创建对应的模型类对象。<br>使用self.model()就可以创建一个跟自定义管理器对应的模型类对象。</li>
+</ul>
+<h5 id="15，元选项"><a href="#15，元选项" class="headerlink" title="15，元选项"></a>15，元选项</h5><p>Django默认生成的表名：</p>
+<blockquote>
+<p>应用名小写_模型类名小写。</p>
+</blockquote>
+<p>元选项：</p>
+<blockquote>
+<p>需要在模型类中定义一个元类Meta,在里面定义一个类属性db_table就可以指定表名。</p>
+</blockquote>
+<h5 id="16，管理器和元选项案例："><a href="#16，管理器和元选项案例：" class="headerlink" title="16，管理器和元选项案例："></a>16，管理器和元选项案例：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># 自定义一个管理器类</span><br><span class="line">class BookInfoManager(models.Manager):</span><br><span class="line">    # 重写父类的all函数, 返回数据表中没有删除的数据</span><br><span class="line"># all filter order_by exclude都调用get_queryset()函数，单独重写</span><br><span class="line"></span><br><span class="line">    #作用1：改变查询的结果集</span><br><span class="line">    def all(self):</span><br><span class="line">        # 1.调用父类的方法查询出所有图书 QuerySet</span><br><span class="line">        res = super().get_queryset().all()</span><br><span class="line">        # 2.对结果进行过滤</span><br><span class="line">        return res.filter(isDelete=False)</span><br><span class="line"></span><br><span class="line">    # 作用2：创建对应模型类的对象，并可以进行一些初始化值</span><br><span class="line">    def create(self, btitle, bpub_date):</span><br><span class="line">        # b = BookInfo()</span><br><span class="line">        # 动态创建一个BookInfo类的对象，类名更改之后这句代码也不需要变化</span><br><span class="line">        b = self.model()</span><br><span class="line">        b.btitle = btitle</span><br><span class="line">        b.bpub_date = bpub_date</span><br><span class="line">        b.bread = 0</span><br><span class="line">        b.bcomment = 0</span><br><span class="line">        b.isDelete = False</span><br><span class="line">        return b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 一类</span><br><span class="line"># 属性名 = models.字段类型(选项)</span><br><span class="line">class BookInfo(models.Model):</span><br><span class="line">    btitle = models.CharField(max_length=20, db_column=&apos;title&apos;)</span><br><span class="line">    # btitle = models.CharField(max_length=20, unique=True, db_index=True) #图书标题</span><br><span class="line">    bpub_date = models.DateField(auto_now_add=True)  # 出版日期</span><br><span class="line">    bread = models.IntegerField(default=0)  # 阅读量</span><br><span class="line">    bcomment = models.IntegerField(default=0)  # 评论数</span><br><span class="line">    isDelete = models.BooleanField(default=False)  # 软删除</span><br><span class="line"></span><br><span class="line">    # python自带的manager类管理器</span><br><span class="line">    # books = models.Manager()</span><br><span class="line">    # 自定义一个类管理起器对象</span><br><span class="line">    objects = BookInfoManager()</span><br><span class="line"></span><br><span class="line">    # 元选项</span><br><span class="line">    class Meta:</span><br><span class="line">        db_table = &apos;bookinfo&apos;  # 指定表名，db_table不能变</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/WechatIMG26.jpeg" alt="Mr. Lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django查询/" rel="tag"><i class="fa fa-tag"></i> Django查询</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/03/最适合初学Django框架的项目/" rel="next" title="最适合初学Django框架的项目">
+                <i class="fa fa-chevron-left"></i> 最适合初学Django框架的项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/avatar.png"
+                alt="Mr. Lee" />
+            
+              <p class="site-author-name" itemprop="name">Mr. Lee</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Leezhonglin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:380604322@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+
+              <ul class="links-of-blogroll-list">
+
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="https://my.csdn.net/jackfrued/" title="大神" target="_blank">
+                        大神
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://www.python.org" title="python" target="_blank">
+                        python
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://redisdoc.com/" title="redis" target="_blank">
+                        redis
+                      </a>
+                    </span>
+                
+
+              </ul>
+
+
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Django中模型查询"><span class="nav-number">1.</span> <span class="nav-text">Django中模型查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1，定义属性"><span class="nav-number">1.0.1.</span> <span class="nav-text">1，定义属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2，字段类型"><span class="nav-number">1.0.2.</span> <span class="nav-text">2，字段类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3，选项"><span class="nav-number">1.0.3.</span> <span class="nav-text">3，选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4，字段查询"><span class="nav-number">1.0.4.</span> <span class="nav-text">4，字段查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5，F对象"><span class="nav-number">1.0.5.</span> <span class="nav-text">5，F对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6，Q对象"><span class="nav-number">1.0.6.</span> <span class="nav-text">6，Q对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7，order-by-返回QuerySet"><span class="nav-number">1.0.7.</span> <span class="nav-text">7，order_by 返回QuerySet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8，聚合函数"><span class="nav-number">1.0.8.</span> <span class="nav-text">8，聚合函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9，查询相关函数返回值总结："><span class="nav-number">1.0.9.</span> <span class="nav-text">9，查询相关函数返回值总结：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10，查询集"><span class="nav-number">1.0.10.</span> <span class="nav-text">10，查询集</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11，模型类关系"><span class="nav-number">1.0.11.</span> <span class="nav-text">11，模型类关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12，关联查询（一对多）"><span class="nav-number">1.0.12.</span> <span class="nav-text">12，关联查询（一对多）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#A、通过对象执行关联查询"><span class="nav-number">1.0.12.1.</span> <span class="nav-text">A、通过对象执行关联查询</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#B、通过模型类实现关联查询："><span class="nav-number">1.0.12.2.</span> <span class="nav-text">B、通过模型类实现关联查询：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13，自关联-特殊的一对多的关系"><span class="nav-number">1.0.13.</span> <span class="nav-text">13，自关联,特殊的一对多的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14，管理器"><span class="nav-number">1.0.14.</span> <span class="nav-text">14，管理器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#15，元选项"><span class="nav-number">1.0.15.</span> <span class="nav-text">15，元选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16，管理器和元选项案例："><span class="nav-number">1.0.16.</span> <span class="nav-text">16，管理器和元选项案例：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr. Lee</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/Leezhonglin">Leezhonglin</a> 提供技术支持</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量:<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+</div>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共:13.2k字</span>
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
