@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Django学习笔记(一)," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Web应用框架 Web应用框架（Web application framework）是一种开发框架，用来支持动态网站、网络应用程序及网络服务的开发。其类型有基于请求的和基于组件的两种框架 常见的框架有1Flask		Django		Tornado		Pyramid		Bottle		Web2py		web.py mvc架构1234567-- model-- controller-- view数据和">
+<meta name="keywords" content="Django学习笔记(一)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web框架Django(一)">
+<meta property="og:url" content="http://yoursite.com/2018/05/25/Web框架Django-一/index.html">
+<meta property="og:site_name" content="Mr. Lee&#39;s blog">
+<meta property="og:description" content="Web应用框架 Web应用框架（Web application framework）是一种开发框架，用来支持动态网站、网络应用程序及网络服务的开发。其类型有基于请求的和基于组件的两种框架 常见的框架有1Flask		Django		Tornado		Pyramid		Bottle		Web2py		web.py mvc架构1234567-- model-- controller-- view数据和">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Web框架Django-一/Users/lizhonglin/Library/Containers/com.tencent.qq/Data/Library/Caches/Images/E9A163A7E421E04FD77B1807356B447F.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Web框架Django-一/Users/lizhonglin/Library/Containers/com.tencent.qq/Data/Library/Caches/Images/5CAC360BC60D562BC3E621664BF9ABBB.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Web框架Django-一/var/folders/v9/jcddlqfx4tg9c57c6xvt8gyr0000gn/T/abnerworks.Typora/image-201805221001203.png">
+<meta property="og:updated_time" content="2018-05-25T14:41:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web框架Django(一)">
+<meta name="twitter:description" content="Web应用框架 Web应用框架（Web application framework）是一种开发框架，用来支持动态网站、网络应用程序及网络服务的开发。其类型有基于请求的和基于组件的两种框架 常见的框架有1Flask		Django		Tornado		Pyramid		Bottle		Web2py		web.py mvc架构1234567-- model-- controller-- view数据和">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/25/Web框架Django-一/Users/lizhonglin/Library/Containers/com.tencent.qq/Data/Library/Caches/Images/E9A163A7E421E04FD77B1807356B447F.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/25/Web框架Django-一/"/>
+
+
+
+
+
+  <title>Web框架Django(一) | Mr. Lee's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr. Lee's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">人生苦短我用Python</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/Web框架Django-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr. Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr. Lee's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Web框架Django(一)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T22:33:31+08:00">
+                2018-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,555
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Web应用框架"><a href="#Web应用框架" class="headerlink" title="Web应用框架"></a>Web应用框架</h4><hr>
+<p>Web应用框架（Web application framework）是一种开发框架，用来支持动态网站、网络应用程序及<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1" target="_blank" rel="noopener">网络服务</a>的开发。其类型有基于请求的和基于组件的两种框架</p>
+<h6 id="常见的框架有"><a href="#常见的框架有" class="headerlink" title="常见的框架有"></a>常见的框架有</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flask		Django		Tornado		Pyramid		Bottle		Web2py		web.py</span><br></pre></td></tr></table></figure>
+<h6 id="mvc架构"><a href="#mvc架构" class="headerlink" title="mvc架构"></a>mvc架构</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- model</span><br><span class="line">-- controller</span><br><span class="line">-- view</span><br><span class="line">数据和数据的解耦合</span><br><span class="line"></span><br><span class="line">MVC：模型-视图-控制器</span><br><span class="line">目标：模型（数据）和视图（显示）解耦合</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/25/Web框架Django-一/Users/lizhonglin/Library/Containers/com.tencent.qq/Data/Library/Caches/Images/E9A163A7E421E04FD77B1807356B447F.jpg" alt="9A163A7E421E04FD77B1807356B447"></p>
+<p>通过控制器，将数据和显示分离，好处是同一个视图可以加载不同的模型，同一个模型也可以显示成不同的视图</p>
+<p>稍具规模的系统都会使用MVC架构或者它的变体（MVP、MVVM等）</p>
+<p>它是对面向对象设计原则中迪米特法则的一个最好的践行</p>
+<h6 id="python中的的模式"><a href="#python中的的模式" class="headerlink" title="python中的的模式"></a>python中的的模式</h6><p><img src="/2018/05/25/Web框架Django-一/Users/lizhonglin/Library/Containers/com.tencent.qq/Data/Library/Caches/Images/5CAC360BC60D562BC3E621664BF9ABBB.jpg" alt="CAC360BC60D562BC3E621664BF9ABB"></p>
+<h5 id="Windows中django操作"><a href="#Windows中django操作" class="headerlink" title="Windows中django操作"></a>Windows中django操作</h5><h6 id="1，检查python的版本"><a href="#1，检查python的版本" class="headerlink" title="1，检查python的版本"></a>1，检查python的版本</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">python --version</span><br></pre></td></tr></table></figure>
+<h6 id="2，创建虚拟环境"><a href="#2，创建虚拟环境" class="headerlink" title="2，创建虚拟环境"></a>2，创建虚拟环境</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m venv  hello_django_venv</span><br></pre></td></tr></table></figure>
+<h6 id="3-进入文件夹"><a href="#3-进入文件夹" class="headerlink" title="3,     进入文件夹"></a>3,     进入文件夹</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd hello_django_venv</span><br><span class="line">激活虚拟环境</span><br><span class="line">cd srcipts      </span><br><span class="line">deactivate (不激活)</span><br></pre></td></tr></table></figure>
+<h6 id="4-安装django框架"><a href="#4-安装django框架" class="headerlink" title="4,    安装django框架"></a>4,    安装django框架</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django  版本(指定版本就加上)      &#123;==1.11   (==指定版本)&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="5-检查django的版本"><a href="#5-检查django的版本" class="headerlink" title="5,检查django的版本"></a>5,检查django的版本</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin --version</span><br></pre></td></tr></table></figure>
+<h6 id="6-创建项目"><a href="#6-创建项目" class="headerlink" title="6, 创建项目"></a>6, 创建项目</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject hello_django</span><br></pre></td></tr></table></figure>
+<h6 id="7-进入项目目录"><a href="#7-进入项目目录" class="headerlink" title="7,进入项目目录"></a>7,进入项目目录</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver  启动服务</span><br></pre></td></tr></table></figure>
+<h5 id="Macos-linux下面创建django虚拟环境"><a href="#Macos-linux下面创建django虚拟环境" class="headerlink" title="Macos\linux下面创建django虚拟环境"></a>Macos\linux下面创建django虚拟环境</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">1,mkdir hello_django     		创建项目目录</span><br><span class="line">2,cd hello_django/       		切换到项目目录</span><br><span class="line">3,python3 -m venv hd_venv 		使用venv模块创建虚拟环境，目录名hd_venv</span><br><span class="line">4,source hd_venv/bin/activate    激活虚拟环境 </span><br><span class="line">5,python -m pip install --upgrade pip  更新pip到最新版本</span><br><span class="line">6,pip install django              使用pip安装django</span><br><span class="line">7,django-admin --version       通过安装django时安装的脚本工具django-admin检查django版本</span><br><span class="line">8,在虚拟环境下面创建项目</span><br><span class="line">	django-admin startproject hello_django</span><br><span class="line">9,启动服务</span><br><span class="line">	python manage.py runserver  启动服务</span><br><span class="line">    ctrl+c 停服务</span><br><span class="line">    </span><br><span class="line">10,建应用</span><br><span class="line">   python manage.py startapp hrs</span><br><span class="line">   </span><br><span class="line">11,注册功能</span><br><span class="line"># 下面的列表容器表示项目中安装了哪些应用</span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    &apos;django.contrib.admin&apos;,</span><br><span class="line">    &apos;django.contrib.auth&apos;,</span><br><span class="line">    &apos;django.contrib.contenttypes&apos;,</span><br><span class="line">    &apos;django.contrib.sessions&apos;,</span><br><span class="line">    &apos;django.contrib.messages&apos;,</span><br><span class="line">    &apos;django.contrib.staticfiles&apos;,</span><br><span class="line">    &apos;hrs&apos;,</span><br><span class="line">    &apos;crms&apos;,</span><br><span class="line">    &apos;sysms&apos;,</span><br><span class="line">]</span><br><span class="line">12,修改view.py文件</span><br><span class="line">13,配置urls.py</span><br></pre></td></tr></table></figure>
+<h6 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#国际化</span><br><span class="line">USE_I18N = True</span><br><span class="line">#本地化</span><br><span class="line">USE_L10N = True</span><br><span class="line"></span><br><span class="line">USE_TZ = True</span><br><span class="line"></span><br><span class="line">#保证存储到数据库中的是 UTC 时间；</span><br><span class="line">#在函数之间传递时间参数时，确保时间已经转换成 UTC 时间；</span><br></pre></td></tr></table></figure>
+<h6 id="查看你已经更改了那个配置项"><a href="#查看你已经更改了那个配置项" class="headerlink" title="查看你已经更改了那个配置项"></a>查看你已经更改了那个配置项</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py diffsettings</span><br></pre></td></tr></table></figure>
+<h6 id="配置网站静态资源"><a href="#配置网站静态资源" class="headerlink" title="配置网站静态资源"></a>配置网站静态资源</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">STATIC_URL = &apos;/static/&apos;   配置静态资源</span><br><span class="line"></span><br><span class="line">&#123;% load static %&#125;     加载静态资源</span><br><span class="line"></span><br><span class="line">原文:https://docs.djangoproject.com/en/2.0/howto/static-files/</span><br></pre></td></tr></table></figure>
+<h6 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1,配置数据库</span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    &apos;default&apos;: &#123;</span><br><span class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</span><br><span class="line">        &apos;NAME&apos;: &apos;oa&apos;,</span><br><span class="line">        &apos;HOST&apos;:&apos;localhost&apos;,</span><br><span class="line">        &apos;PORT&apos;: &apos;3306&apos;,</span><br><span class="line">        &apos;USER&apos;: &apos;root&apos;,</span><br><span class="line">        &apos;PASSWORD&apos;: &apos;123456&apos;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2,安装依赖库</span><br><span class="line">pip install pymysql</span><br><span class="line"></span><br><span class="line">3,配置__init__</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/05/25/Web框架Django-一/var/folders/v9/jcddlqfx4tg9c57c6xvt8gyr0000gn/T/abnerworks.Typora/image-201805221001203.png" alt="mage-20180522100120"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4.执行</span><br><span class="line">python manage.py migrate  迁移工具  (可以自动建表)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">生成迁移</span><br><span class="line">python manage.py makemigrations hrs   </span><br><span class="line"></span><br><span class="line">执行迁移</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>两个一对多 取代多对多</p>
+</blockquote>
+<h6 id="创建Django超级管理员"><a href="#创建Django超级管理员" class="headerlink" title="创建Django超级管理员"></a>创建Django超级管理员</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">^C(venv) lizhonglindeMacBook-Pro:oa lizhonglin$ python manage.py createsuperuser </span><br><span class="line">Username (leave blank to use &apos;lizhonglin&apos;): admin</span><br><span class="line">Email address: admin@126.com</span><br><span class="line">Password: </span><br><span class="line">Password (again): </span><br><span class="line">This password is too short. It must contain at least 8 characters.</span><br><span class="line">This password is too common.</span><br><span class="line">This password is entirely numeric.</span><br><span class="line">Password: </span><br><span class="line">Password (again): </span><br><span class="line">Superuser created successfully.</span><br><span class="line">(venv) lizhonglindeMacBook-Pro:oa lizhonglin$</span><br></pre></td></tr></table></figure>
+<h6 id="注册admin-py"><a href="#注册admin-py" class="headerlink" title="注册admin.py"></a>注册admin.py</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">例如:</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line">from cart.models import Goods</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class GoodsAdmin(admin.ModelAdmin):</span><br><span class="line">    list_display = (&apos;id&apos;,&apos;name&apos;,&apos;price&apos;,&apos;image&apos;)</span><br><span class="line">    search_fields = (&apos;name&apos;,)</span><br><span class="line">    </span><br><span class="line">admin.site.register(Goods,GoodsAdmin)</span><br></pre></td></tr></table></figure>
+<h6 id="项目中的shell"><a href="#项目中的shell" class="headerlink" title="项目中的shell"></a>项目中的shell</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure>
+<h6 id="增-删-改-查"><a href="#增-删-改-查" class="headerlink" title="增    删    改    查"></a>增    删    改    查</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">创建一个部门</span><br><span class="line">dept = Dept(no=&apos;90&apos;,name=&apos;研发二部&apos;,location=&apos;武汉&apos;)</span><br><span class="line"></span><br><span class="line">获取一个部门</span><br><span class="line">Dept.object.get(pk=20)  获取一个</span><br><span class="line"></span><br><span class="line">获取所有</span><br><span class="line">Dept.object.all()</span><br><span class="line"></span><br><span class="line">保存</span><br><span class="line">dept.save()  </span><br><span class="line"></span><br><span class="line">删除</span><br><span class="line">dept.delect()</span><br></pre></td></tr></table></figure>
+<p>表格 :</p>
+<table>
+<thead>
+<tr>
+<th>no</th>
+<th>name</th>
+<th>location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>技术二部</td>
+<td>武汉</td>
+</tr>
+<tr>
+<td>20</td>
+<td>行政部</td>
+<td>成都</td>
+</tr>
+<tr>
+<td>30</td>
+<td>销售部</td>
+<td>重庆</td>
+</tr>
+<tr>
+<td>40</td>
+<td>综合部</td>
+<td>成都</td>
+</tr>
+<tr>
+<td>60</td>
+<td>网络部</td>
+<td>成都</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell  </span><br><span class="line"></span><br><span class="line">精确查询某个部门</span><br><span class="line">Dept.objects.filter(name=&apos;行政部&apos;)</span><br><span class="line"></span><br><span class="line">模糊查询</span><br><span class="line">&gt;&gt;&gt; Dept.objects.filter(name__contains=&apos;网&apos;)</span><br><span class="line">&lt;QuerySet [&lt;Dept: 网络部&gt;]&gt;</span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line"></span><br><span class="line">忽略大小写模糊查询</span><br><span class="line">&gt;&gt;&gt; Dept.objects.filter(name__icontains=&apos;网&apos;)</span><br><span class="line"></span><br><span class="line">查询大于30的部门</span><br><span class="line">&gt;&gt;&gt; Dept.objects.filter(no__gt=30)</span><br><span class="line">&lt;QuerySet [&lt;Dept: 综合部&gt;, &lt;Dept: 网络部&gt;]&gt;</span><br><span class="line"></span><br><span class="line">查询到大于等于30的部门</span><br><span class="line">&gt;&gt;&gt; Dept.objects.filter(no__gte=30)</span><br><span class="line">&lt;QuerySet [&lt;Dept: 销售部&gt;, &lt;Dept: 综合部&gt;, &lt;Dept: 网络部&gt;]&gt;</span><br><span class="line"></span><br><span class="line">倒叙查询所有</span><br><span class="line">&gt;&gt;&gt; Dept.objects.all().order_by(&apos;-no&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">切片查询</span><br><span class="line">&gt;&gt;&gt; Dept.objects.all().order_by(&apos;no&apos;)[0:3]</span><br><span class="line">&lt;QuerySet [&lt;Dept: 技术二部&gt;, &lt;Dept: 行政部&gt;, &lt;Dept: 销售部&gt;]&gt;</span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line"></span><br><span class="line">原始查询</span><br><span class="line">&gt;&gt;&gt; Dept.objects.raw(&apos;select name from tb_dept&apos;)</span><br><span class="line">&lt;RawQuerySet: select name from tb_dept&gt;</span><br><span class="line"></span><br><span class="line">查询小于30的部门</span><br><span class="line">&gt;&gt;&gt; Dept.objects.filter(no__lt=30)</span><br><span class="line">&lt;QuerySet [&lt;Dept: 技术二部&gt;, &lt;Dept: 行政部&gt;]&gt;</span><br><span class="line">&gt;&gt;&gt; </span><br><span class="line"></span><br><span class="line">删除部门</span><br><span class="line">&gt;&gt;&gt; Dept.object.get(pk=30).delect()</span><br></pre></td></tr></table></figure>
+<h6 id="django配置日志"><a href="#django配置日志" class="headerlink" title="django配置日志"></a>django配置日志</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#配置日志输出到控制台</span><br><span class="line"></span><br><span class="line">LOGGING = &#123;</span><br><span class="line">    &apos;version&apos;: 1,</span><br><span class="line">    &apos;disable_existing_loggers&apos;: False,</span><br><span class="line">    &apos;handlers&apos;: &#123;</span><br><span class="line">        &apos;console&apos;: &#123;</span><br><span class="line">            &apos;class&apos;: &apos;logging.StreamHandler&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &apos;loggers&apos;: &#123;</span><br><span class="line">        &apos;django&apos;: &#123;</span><br><span class="line">            &apos;handlers&apos;: [&apos;console&apos;],</span><br><span class="line">            &apos;level&apos;: os.getenv(&apos;DJANGO_LOG_LEVEL&apos;, &apos;DEBUG&apos;),</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="request"><a href="#request" class="headerlink" title="request"></a>request</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.META     获取请求头的东西和本机的东西</span><br><span class="line">request.POST</span><br><span class="line">request.GET      获取使用GET请求的参数</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查询这个部门的所有员工</span><br><span class="line"></span><br><span class="line">1, Emp.objects.filter(dept__no=no) </span><br><span class="line"></span><br><span class="line">反向查询</span><br><span class="line">先查询部门在查部门的员工 建表的时候可以加在ForeignKey中related_name </span><br><span class="line">related_name=&quot;+&quot; 阻止反向查询</span><br><span class="line">2, Dept.object.filter(no=no).emp_set.all()  </span><br><span class="line"></span><br><span class="line">3 .select_related(&apos;dept&apos;)</span><br></pre></td></tr></table></figure>
+<h6 id="QuerySet知识点"><a href="#QuerySet知识点" class="headerlink" title="QuerySet知识点"></a>QuerySet知识点</h6><p>QuerySet 使用的是惰性查询  ===如果不是非要取数据的时候就不会去取数据,要用到数据的时候才会去取数据.这样做是为了节省服务器的内存开销(延迟开销)   节省空间的—消耗时间</p>
+<p>数据量大的时候先:筛选—排序—切片 .select_related</p>
+<blockquote>
+<p>写程序要尽量避免硬代码\硬编码</p>
+</blockquote>
+<h6 id="配置URL"><a href="#配置URL" class="headerlink" title="配置URL"></a>配置URL</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">django1.x版本</span><br><span class="line">命名捕获组 URL(&apos;emps/(?P&lt;NAME&gt;[0-9]+)&apos;,views.emps</span><br><span class="line"></span><br><span class="line">diango2.x版本</span><br><span class="line">path(&apos;emps/&lt;int:no&gt;&apos;,views.emps,name=&apos;empsindept&apos;),</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="未完待续………"><a href="#未完待续………" class="headerlink" title="未完待续……….."></a>未完待续………..</h5><hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/WechatIMG26.jpeg" alt="Mr. Lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django学习笔记-一/" rel="tag"><i class="fa fa-tag"></i> Django学习笔记(一)</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/25/CentOS学习笔记/" rel="next" title="CentOS学习笔记">
+                <i class="fa fa-chevron-left"></i> CentOS学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/25/Django之Cookie和Session/" rel="prev" title="Django之Cookie和Session">
+                Django之Cookie和Session <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/avatar.png"
+                alt="Mr. Lee" />
+            
+              <p class="site-author-name" itemprop="name">Mr. Lee</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Leezhonglin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:380604322@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+
+              <ul class="links-of-blogroll-list">
+
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="https://my.csdn.net/jackfrued/" title="大神" target="_blank">
+                        大神
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://www.python.org" title="python" target="_blank">
+                        python
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://redisdoc.com/" title="redis" target="_blank">
+                        redis
+                      </a>
+                    </span>
+                
+
+              </ul>
+
+
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Web应用框架"><span class="nav-number">1.</span> <span class="nav-text">Web应用框架</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#常见的框架有"><span class="nav-number">1.0.1.</span> <span class="nav-text">常见的框架有</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mvc架构"><span class="nav-number">1.0.2.</span> <span class="nav-text">mvc架构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#python中的的模式"><span class="nav-number">1.0.3.</span> <span class="nav-text">python中的的模式</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Windows中django操作"><span class="nav-number">1.1.</span> <span class="nav-text">Windows中django操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1，检查python的版本"><span class="nav-number">1.1.1.</span> <span class="nav-text">1，检查python的版本</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2，创建虚拟环境"><span class="nav-number">1.1.2.</span> <span class="nav-text">2，创建虚拟环境</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-进入文件夹"><span class="nav-number">1.1.3.</span> <span class="nav-text">3,     进入文件夹</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-安装django框架"><span class="nav-number">1.1.4.</span> <span class="nav-text">4,    安装django框架</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-检查django的版本"><span class="nav-number">1.1.5.</span> <span class="nav-text">5,检查django的版本</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-创建项目"><span class="nav-number">1.1.6.</span> <span class="nav-text">6, 创建项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-进入项目目录"><span class="nav-number">1.1.7.</span> <span class="nav-text">7,进入项目目录</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Macos-linux下面创建django虚拟环境"><span class="nav-number">1.2.</span> <span class="nav-text">Macos\linux下面创建django虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#配置文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#查看你已经更改了那个配置项"><span class="nav-number">1.2.2.</span> <span class="nav-text">查看你已经更改了那个配置项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置网站静态资源"><span class="nav-number">1.2.3.</span> <span class="nav-text">配置网站静态资源</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#连接数据库"><span class="nav-number">1.2.4.</span> <span class="nav-text">连接数据库</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#创建Django超级管理员"><span class="nav-number">1.2.5.</span> <span class="nav-text">创建Django超级管理员</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注册admin-py"><span class="nav-number">1.2.6.</span> <span class="nav-text">注册admin.py</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#项目中的shell"><span class="nav-number">1.2.7.</span> <span class="nav-text">项目中的shell</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#增-删-改-查"><span class="nav-number">1.2.8.</span> <span class="nav-text">增    删    改    查</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#django配置日志"><span class="nav-number">1.2.9.</span> <span class="nav-text">django配置日志</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#request"><span class="nav-number">1.2.10.</span> <span class="nav-text">request</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#QuerySet知识点"><span class="nav-number">1.2.11.</span> <span class="nav-text">QuerySet知识点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#配置URL"><span class="nav-number">1.2.12.</span> <span class="nav-text">配置URL</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#未完待续………"><span class="nav-number">1.3.</span> <span class="nav-text">未完待续………..</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr. Lee</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/Leezhonglin">Leezhonglin</a> 提供技术支持</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量:<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+</div>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共:10.0k字</span>
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
