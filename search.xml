@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>最适合初学Django框架的项目</title>
+      <link href="/2018/06/03/%E6%9C%80%E9%80%82%E5%90%88%E5%88%9D%E5%AD%A6Django%E6%A1%86%E6%9E%B6%E7%9A%84%E9%A1%B9%E7%9B%AE/"/>
+      <url>/2018/06/03/%E6%9C%80%E9%80%82%E5%90%88%E5%88%9D%E5%AD%A6Django%E6%A1%86%E6%9E%B6%E7%9A%84%E9%A1%B9%E7%9B%AE/</url>
+      <content type="html"><![CDATA[<p>初学Django 包含了页面的增删改查,ajax,分页,中间件,权限……等等知识点</p><p>自己学了一段时间的Django了,开始的是时候有点懵,不过细细回味了一下,于是乎把学习的部分内容总结了一下.以一个项目来分享给大家.希望对大家有帮助.</p><p>项目的样子</p><p><img src="/Users/lizhonglin/Desktop/blog/source/_posts/res/home.png" alt="om"></p><p><img src="/Users/lizhonglin/Desktop/blog/source/_posts/res/adminye.png" alt="dminy"></p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Django之Cookie和Session</title>
       <link href="/2018/05/25/Django%E4%B9%8BCookie%E5%92%8CSession/"/>
       <url>/2018/05/25/Django%E4%B9%8BCookie%E5%92%8CSession/</url>
