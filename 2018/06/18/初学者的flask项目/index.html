@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="完整的flask项目," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="学了一周的flask项目,在这里把我自己的做的项目分享给大家.实现了如下的功能. 项目内容:1,班级管理 班级列表 班级增加 班级修改 查看班级中的学生  2,学生管理的增删改查 学生列表 学生添加 学生修改  3,权限的增加 角色的增加 角色列表 查看用户权限 添加用户权限 减少用户权限   权限列表 添加权限  4,用户管理 用户列表 用户添加 用户角色分配  5,系统管理 修改密码 退出">
+<meta name="keywords" content="完整的flask项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初学者的flask项目">
+<meta property="og:url" content="http://yoursite.com/2018/06/18/初学者的flask项目/index.html">
+<meta property="og:site_name" content="Mr. Lee&#39;s blog">
+<meta property="og:description" content="学了一周的flask项目,在这里把我自己的做的项目分享给大家.实现了如下的功能. 项目内容:1,班级管理 班级列表 班级增加 班级修改 查看班级中的学生  2,学生管理的增删改查 学生列表 学生添加 学生修改  3,权限的增加 角色的增加 角色列表 查看用户权限 添加用户权限 减少用户权限   权限列表 添加权限  4,用户管理 用户列表 用户添加 用户角色分配  5,系统管理 修改密码 退出">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/初学者的flask项目/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/初学者的flask项目/home.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/18/初学者的flask项目/qdym.png">
+<meta property="og:updated_time" content="2018-06-18T03:00:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初学者的flask项目">
+<meta name="twitter:description" content="学了一周的flask项目,在这里把我自己的做的项目分享给大家.实现了如下的功能. 项目内容:1,班级管理 班级列表 班级增加 班级修改 查看班级中的学生  2,学生管理的增删改查 学生列表 学生添加 学生修改  3,权限的增加 角色的增加 角色列表 查看用户权限 添加用户权限 减少用户权限   权限列表 添加权限  4,用户管理 用户列表 用户添加 用户角色分配  5,系统管理 修改密码 退出">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/18/初学者的flask项目/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/18/初学者的flask项目/"/>
+
+
+
+
+
+  <title>初学者的flask项目 | Mr. Lee's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr. Lee's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">人生苦短我用Python</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/初学者的flask项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr. Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr. Lee's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">初学者的flask项目</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T09:33:35+08:00">
+                2018-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,634
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  24
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学了一周的flask项目,在这里把我自己的做的项目分享给大家.实现了如下的功能.</p>
+<h4 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容:"></a>项目内容:</h4><h5 id="1-班级管理"><a href="#1-班级管理" class="headerlink" title="1,班级管理"></a>1,班级管理</h5><ol>
+<li>班级列表</li>
+<li>班级增加</li>
+<li>班级修改</li>
+<li>查看班级中的学生</li>
+</ol>
+<h5 id="2-学生管理的增删改查"><a href="#2-学生管理的增删改查" class="headerlink" title="2,学生管理的增删改查"></a>2,学生管理的增删改查</h5><ol>
+<li>学生列表</li>
+<li>学生添加</li>
+<li>学生修改</li>
+</ol>
+<h5 id="3-权限的增加"><a href="#3-权限的增加" class="headerlink" title="3,权限的增加"></a>3,权限的增加</h5><ol>
+<li>角色的增加</li>
+<li>角色列表<ol>
+<li>查看用户权限</li>
+<li>添加用户权限</li>
+<li>减少用户权限</li>
+</ol>
+</li>
+<li>权限列表</li>
+<li>添加权限</li>
+</ol>
+<h5 id="4-用户管理"><a href="#4-用户管理" class="headerlink" title="4,用户管理"></a>4,用户管理</h5><ol>
+<li>用户列表</li>
+<li>用户添加</li>
+<li>用户角色分配</li>
+</ol>
+<h5 id="5-系统管理"><a href="#5-系统管理" class="headerlink" title="5,系统管理"></a>5,系统管理</h5><ol>
+<li>修改密码</li>
+<li>退出</li>
+</ol>
+<ol>
+<li>用户登录注册<ol>
+<li>用户注册</li>
+<li>用户登录验证</li>
+</ol>
+</li>
+</ol>
+<h5 id="6-页面分页"><a href="#6-页面分页" class="headerlink" title="6,页面分页"></a>6,页面分页</h5><hr>
+<h5 id="详细的项目代码"><a href="#详细的项目代码" class="headerlink" title="详细的项目代码"></a>详细的项目代码</h5><p>在这里我就省略建立项目的流程直接来开始我们的项目…..</p>
+<p>建立项目的流程不会可以自行百度flask官网</p>
+<h5 id="1-首先介绍一下项目的文件构成-如下图"><a href="#1-首先介绍一下项目的文件构成-如下图" class="headerlink" title="1.首先介绍一下项目的文件构成,如下图"></a>1.首先介绍一下项目的文件构成,如下图</h5><p><img src="/2018/06/18/初学者的flask项目/1.png" alt="1"></p>
+<h5 id="2-启动文件的配置"><a href="#2-启动文件的配置" class="headerlink" title="2, 启动文件的配置"></a>2, 启动文件的配置</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#manange.py文件的内容</span></span><br><span class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> utils.functions <span class="keyword">import</span> create_app</span><br><span class="line"></span><br><span class="line">app = create_app()</span><br><span class="line"></span><br><span class="line">manage = Manager(app=app)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    manage.run()</span><br></pre></td></tr></table></figure>
+<h5 id="3-重要的配置"><a href="#3-重要的配置" class="headerlink" title="3,重要的配置"></a>3,重要的配置</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#utils中funtions.py文件中的类容,重要的配置</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> App.user_views <span class="keyword">import</span> user_blueprint</span><br><span class="line"><span class="keyword">from</span> App.models <span class="keyword">import</span> db</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_app</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 定义系统路径的变量</span></span><br><span class="line">    BASE_DIR = os.path.dirname(os.path.dirname(__file__))</span><br><span class="line">    <span class="comment"># 定义静态文件的路径</span></span><br><span class="line">    static_dir = os.path.join(BASE_DIR, <span class="string">'static'</span>)</span><br><span class="line">    <span class="comment"># 定义模板文件的路径</span></span><br><span class="line">    templates_dir = os.path.join(BASE_DIR, <span class="string">'templates'</span>)</span><br><span class="line">    <span class="comment"># 初始化app 和manage.py文件关联</span></span><br><span class="line">    app = Flask(__name__,</span><br><span class="line">                static_folder=static_dir,</span><br><span class="line">                template_folder=templates_dir)</span><br><span class="line">    <span class="comment"># 注册蓝图</span></span><br><span class="line">    app.register_blueprint(blueprint=user_blueprint, url_prefix=<span class="string">'/user'</span>)</span><br><span class="line">    <span class="comment"># 配置mysql数据库</span></span><br><span class="line">    app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = <span class="string">'mysql+pymysql://root:123456@127.0.0.1:3306/Htai'</span></span><br><span class="line">    app.config[<span class="string">'SQLALCHEMY_TRACK_MODIFICATIONS'</span>] = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置session密钥</span></span><br><span class="line">    app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'secret_key'</span></span><br><span class="line">    <span class="comment"># 设置连接的redis数据库 默认连接到本地6379</span></span><br><span class="line">    app.config[<span class="string">'SESSION_TYPE'</span>] = <span class="string">'redis'</span></span><br><span class="line">    <span class="comment"># 设置远程</span></span><br><span class="line">    app.config[<span class="string">'SESSION_REDIS'</span>] = redis.Redis(host=<span class="string">'127.0.0.1'</span>, port=<span class="number">6379</span>)</span><br><span class="line">    <span class="comment"># 初始化db</span></span><br><span class="line">    db.init_app(app=app)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> app</span><br></pre></td></tr></table></figure>
+<h5 id="4-登录验证的装饰器"><a href="#4-登录验证的装饰器" class="headerlink" title="4,登录验证的装饰器"></a>4,登录验证的装饰器</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> url_for,redirect,session</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_login</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    定义登录注册验证的装饰器</span></span><br><span class="line"><span class="string">    :return: check_login</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"><span class="meta">    @wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check_login</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        user_id = session.get(<span class="string">'user_id'</span>)</span><br><span class="line">        <span class="keyword">if</span> user_id:</span><br><span class="line">            <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> redirect(url_for(<span class="string">'user.login'</span>))</span><br><span class="line">    <span class="keyword">return</span> check_login</span><br></pre></td></tr></table></figure>
+<h5 id="5-建立项目的模型"><a href="#5-建立项目的模型" class="headerlink" title="5,建立项目的模型"></a>5,建立项目的模型</h5><p>建立模型我们要对我们需求进行详细ORM(对象关系映射)的分析</p>
+<p>student &lt;————&gt;     grade     一对多</p>
+<p>user      &lt;————&gt;     role       一对多</p>
+<p>role      &lt;————&gt;      permission   多对多</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="comment"># 导入SQLAlchemy模块</span></span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="comment"># 初始化db</span></span><br><span class="line">db = SQLAlchemy()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grade</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    <span class="string">"""班级模型"""</span></span><br><span class="line">    g_id = db.Column(db.Integer, autoincrement=<span class="keyword">True</span>, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    g_name = db.Column(db.String(<span class="number">20</span>), unique=<span class="keyword">True</span>)</span><br><span class="line">    g_create_time = db.Column(db.DateTime, default=datetime.now)</span><br><span class="line">    <span class="comment"># 设置与班级 一对多的关联关系</span></span><br><span class="line">    students = db.relationship(<span class="string">'Student'</span>,backref= <span class="string">'grade'</span>)</span><br><span class="line">    <span class="comment"># 自定义表名</span></span><br><span class="line">    __tablename__ = <span class="string">'grade'</span></span><br><span class="line">    <span class="comment"># 初始化字段 方便以后视图使用</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.g_name = name</span><br><span class="line">    <span class="comment"># 定义保存数据的方法 后面视图好使用</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">        db.session.add(self)</span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    <span class="string">"""学生模型"""</span></span><br><span class="line">    s_id = db.Column(db.Integer, autoincrement=<span class="keyword">True</span>, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    s_name = db.Column(db.String(<span class="number">16</span>), unique=<span class="keyword">True</span>)</span><br><span class="line">    s_sex = db.Column(db.Integer)</span><br><span class="line">    <span class="comment"># 设置与班级 一对多的关联关系</span></span><br><span class="line">    grade_id = db.Column(db.Integer, db.ForeignKey(<span class="string">'grade.g_id'</span>), nullable=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    __tablename__ = <span class="string">'student'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, s_name, s_sex,grade_id)</span>:</span></span><br><span class="line">        self.s_name = s_name</span><br><span class="line">        self.s_sex = s_sex</span><br><span class="line">        self.grade_id =grade_id</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">        db.session.add(self)</span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    <span class="string">"""用户模型"""</span></span><br><span class="line">    u_id = db.Column(db.Integer, autoincrement=<span class="keyword">True</span>, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    username = db.Column(db.String(<span class="number">16</span>), unique=<span class="keyword">True</span>)</span><br><span class="line">    password = db.Column(db.String(<span class="number">250</span>))</span><br><span class="line">    u_create_time = db.Column(db.DateTime, default=datetime.now)</span><br><span class="line">    <span class="comment"># 用户和角色的一对多的关联关系</span></span><br><span class="line">    role_id = db.Column(db.Integer, db.ForeignKey(<span class="string">'role.r_id'</span>))</span><br><span class="line"></span><br><span class="line">    __tablename__ = <span class="string">'user'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,username,password)</span>:</span></span><br><span class="line">        self.username = username</span><br><span class="line">        self.password = password</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">        db.session.add(self)</span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 角色和权限的(多对多的)关联表</span></span><br><span class="line"><span class="comment"># r_p为关联表的表名</span></span><br><span class="line">r_p = db.Table(<span class="string">'r_p'</span>,</span><br><span class="line">               db.Column(<span class="string">'role_id'</span>, db.Integer, db.ForeignKey(<span class="string">'role.r_id'</span>), primary_key=<span class="keyword">True</span>),</span><br><span class="line">               db.Column(<span class="string">'permission_id'</span>, db.Integer, db.ForeignKey(<span class="string">'permission.p_id'</span>), primary_key=<span class="keyword">True</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Role</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    r_id = db.Column(db.Integer, autoincrement=<span class="keyword">True</span>, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    r_name = db.Column(db.String(<span class="number">10</span>))</span><br><span class="line">    <span class="comment"># 用户和角色的一对多的关联关系</span></span><br><span class="line">    users = db.relationship(<span class="string">'User'</span>, backref=<span class="string">'role'</span>)</span><br><span class="line"></span><br><span class="line">    __tablename__ = <span class="string">'role'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,r_name)</span>:</span></span><br><span class="line">        self.r_name = r_name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">        db.session.add(self)</span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Permission</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    p_id = db.Column(db.Integer, autoincrement=<span class="keyword">True</span>, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    p_name = db.Column(db.String(<span class="number">16</span>), unique=<span class="keyword">True</span>)</span><br><span class="line">    p_er = db.Column(db.String(<span class="number">16</span>), unique=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># 角色和权限的多对多的关系</span></span><br><span class="line">    roles = db.relationship(<span class="string">'Role'</span>, secondary=r_p, backref=db.backref(<span class="string">'permission'</span>, lazy=<span class="keyword">True</span>))</span><br><span class="line"></span><br><span class="line">    __tablename__ = <span class="string">'permission'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,p_name,p_er)</span>:</span></span><br><span class="line">        self.p_name = p_name</span><br><span class="line">        self.p_er = p_er</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></span><br><span class="line">        db.session.add(self)</span><br><span class="line">        db.session.commit()</span><br></pre></td></tr></table></figure>
+<h5 id="6-在后台数据库中创建数据库为Htai的数据库"><a href="#6-在后台数据库中创建数据库为Htai的数据库" class="headerlink" title="6,在后台数据库中创建数据库为Htai的数据库"></a>6,在后台数据库中创建数据库为Htai的数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">建库sql语句:</span><br><span class="line">create database Htai default charset utf8;</span><br></pre></td></tr></table></figure>
+<h5 id="7-开始写我们的视图中的代码"><a href="#7-开始写我们的视图中的代码" class="headerlink" title="7,开始写我们的视图中的代码"></a>7,开始写我们的视图中的代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@user_blueprint.route('/create_db/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_db</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    创建数据</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    db.create_all()</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="meta">@user_blueprint.route('/drop_db/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drop_db</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    删除数据库</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    db.drop_all()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'删除成功'</span></span><br></pre></td></tr></table></figure>
+<p>执行这个地址就能把我们创建好的模型在数据库中创建好对应的表以供我们后续的功能的使用.</p>
+<h5 id="8-我们来实现第一个功能查看我们的首页"><a href="#8-我们来实现第一个功能查看我们的首页" class="headerlink" title="8,我们来实现第一个功能查看我们的首页"></a>8,我们来实现第一个功能查看我们的首页</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@user_blueprint.route('/home/', methods=['GET'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">home</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    首页</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'index.html'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/head/', methods=['GET'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">head</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    页头</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        user = session.get(<span class="string">'username'</span>)</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'head.html'</span>, user=user)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/left/', methods=['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">left</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""左侧栏"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="comment"># 获取登录的用户信息</span></span><br><span class="line">        user = session.get(<span class="string">'username'</span>)</span><br><span class="line">        <span class="comment"># 获取用户的权限</span></span><br><span class="line">        permissions = User.query.filter_by(username=user).first().role.permission</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'left.html'</span>, permissions=permissions)</span><br></pre></td></tr></table></figure>
+<p>这样我们就能看见我们初始项目的样子了.如下图</p>
+<p><img src="/2018/06/18/初学者的flask项目/home.png" alt="om"></p>
+<p>下面我们就一点一点的实现上面我们所说的功能,代码如下重要的内容我写好了注释</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@user_blueprint.route('/register/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    用户注册页面</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'register.html'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        <span class="comment"># 获取用户填写的信息</span></span><br><span class="line">        username = request.form.get(<span class="string">'username'</span>)</span><br><span class="line">        pwd1 = request.form.get(<span class="string">'pwd1'</span>)</span><br><span class="line">        pwd2 = request.form.get(<span class="string">'pwd2'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 定义个变量来控制过滤用户填写的信息</span></span><br><span class="line">        flag = <span class="keyword">True</span></span><br><span class="line">        <span class="comment"># 判断用户是否信息都填写了.(all()函数可以判断用户填写的字段是否有空)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> all([username, pwd1, pwd2]):</span><br><span class="line">            msg, flag = <span class="string">'* 请填写完整信息'</span>, <span class="keyword">False</span></span><br><span class="line">        <span class="comment"># 判断用户名是长度是否大于16</span></span><br><span class="line">        <span class="keyword">if</span> len(username) &gt; <span class="number">16</span>:</span><br><span class="line">            msg, flag = <span class="string">'* 用户名太长'</span>, <span class="keyword">False</span></span><br><span class="line">        <span class="comment"># 判断两次填写的密码是否一致</span></span><br><span class="line">        <span class="keyword">if</span> pwd1 != pwd2:</span><br><span class="line">            msg, flag = <span class="string">'* 两次密码不一致'</span>, <span class="keyword">False</span></span><br><span class="line">        <span class="comment"># 如果上面的检查有任意一项没有通过就返回注册页面,并提示响应的信息</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> flag:</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'register.html'</span>, msg=msg)</span><br><span class="line">        <span class="comment"># 核对输入的用户是否已经被注册了</span></span><br><span class="line">        u = User.query.filter(User.username == username).first()</span><br><span class="line">        <span class="comment"># 判断用户名是否已经存在</span></span><br><span class="line">        <span class="keyword">if</span> u:</span><br><span class="line">            msg = <span class="string">'用户名已经存在'</span></span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'register.html'</span>, msg=msg)</span><br><span class="line">        <span class="comment"># 上面的验证全部通过后就开始创建新用户</span></span><br><span class="line">        user = User(username=username, password=pwd1)</span><br><span class="line">        <span class="comment"># 保存注册的用户</span></span><br><span class="line">        user.save()</span><br><span class="line">        <span class="comment"># 跳转到登录页面</span></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.login'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/login/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    登录</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'login.html'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        username = request.form.get(<span class="string">'username'</span>)</span><br><span class="line">        password = request.form.get(<span class="string">'password'</span>)</span><br><span class="line">        <span class="comment"># 判断用户名和密码是否填写</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> all([username, password]):</span><br><span class="line">            msg = <span class="string">'* 请填写好完整的信息'</span></span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'login.html'</span>, msg=msg)</span><br><span class="line">        <span class="comment"># 核对用户名和密码是否一致</span></span><br><span class="line">        user = User.query.filter_by(username=username, password=password).first()</span><br><span class="line">        <span class="comment"># 如果用户名和密码一致</span></span><br><span class="line">        <span class="keyword">if</span> user:</span><br><span class="line">            <span class="comment"># 向session中写入相应的数据</span></span><br><span class="line">            session[<span class="string">'user_id'</span>] = user.u_id</span><br><span class="line">            session[<span class="string">'username'</span>] = user.username</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'index.html'</span>)</span><br><span class="line">        <span class="comment"># 如果用户名和密码不一致返回登录页面,并给提示信息</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            msg = <span class="string">'* 用户名或者密码不一致'</span></span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'login.html'</span>, msg=msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/logout/', methods=['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    退出登录</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="comment"># 清空session</span></span><br><span class="line">        session.clear()</span><br><span class="line">        <span class="comment"># 跳转到登录页面</span></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.login'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/grade/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grade_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    显示班级列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="comment"># 查询第几页的数据</span></span><br><span class="line">        page = int(request.args.get(<span class="string">'page'</span>,<span class="number">1</span>))</span><br><span class="line">        <span class="comment"># 每页的条数是多少,默认为5条</span></span><br><span class="line">        page_num = int(request.args.get(<span class="string">'page_num'</span>,<span class="number">5</span>))</span><br><span class="line">        <span class="comment"># 查询当前第几个的多少条数据</span></span><br><span class="line">        paginate = Grade.query.order_by(<span class="string">'g_id'</span>).paginate(page,page_num)</span><br><span class="line">        <span class="comment"># 获取某也的具体数据</span></span><br><span class="line">        grades = paginate.items</span><br><span class="line">        <span class="comment"># 返回获取到的班级信息给前端页面</span></span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'grade.html'</span>, grades=grades,paginate=paginate)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/addgrade/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_grade</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""添加班级"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'addgrade.html'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        g_name = request.form.get(<span class="string">'g_name'</span>)</span><br><span class="line">        g = Grade.query.filter(Grade.g_name == g_name).first()</span><br><span class="line">        <span class="comment"># 判断要添加的信息数据库中是否存在(因为班级名称不能重复)</span></span><br><span class="line">        <span class="keyword">if</span> g:</span><br><span class="line">            msg = <span class="string">'*班级名称不能重复,请核对好在来添加'</span></span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'addgrade.html'</span>, msg=msg)</span><br><span class="line">        <span class="comment"># 创建班级</span></span><br><span class="line">        grade = Grade(g_name)</span><br><span class="line">        <span class="comment"># 保存班级信息</span></span><br><span class="line">        grade.save()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.grade_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/edit_grade/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit_grade</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""编辑班级"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        g_id = request.args.get(<span class="string">'g_id'</span>)</span><br><span class="line">        g_name = Grade.query.filter(Grade.g_id == g_id).first().g_name</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'addgrade.html'</span>, g_name=g_name, g_id=g_id)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        <span class="comment"># 获取需要修改的班级id</span></span><br><span class="line">        g_id = request.form.get(<span class="string">'g_id'</span>)</span><br><span class="line">        g_name = request.form.get(<span class="string">'g_name'</span>)</span><br><span class="line">        <span class="comment"># 通过获取到的班级id</span></span><br><span class="line">        grade = Grade.query.filter(Grade.g_id == g_id).first()</span><br><span class="line">        <span class="comment"># 重新给班级赋值</span></span><br><span class="line">        grade.g_name = g_name</span><br><span class="line">        grade.save()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.grade_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/grade_student/', methods=['GET'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grade_students_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""班级中学习的信息列表"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        g_id = request.args.get(<span class="string">'g_id'</span>)</span><br><span class="line">        stus = Student.query.filter(Student.grade_id == g_id).all()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'student.html'</span>, stus=stus)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/student/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">student_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""学生信息列表"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        page = int(request.args.get(<span class="string">'page'</span>,<span class="number">1</span>))</span><br><span class="line">        page_num = int(request.args.get(<span class="string">'page_num'</span>,<span class="number">5</span>))</span><br><span class="line">        paginate = Student.query.order_by(<span class="string">'s_id'</span>).paginate(page,page_num)</span><br><span class="line">        stus = paginate.items</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'student.html'</span>, stus=stus,paginate=paginate)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/addstu/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_stu</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""添加学生"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        grades = Grade.query.all()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'addstu.html'</span>, grades=grades)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        s_name = request.form.get(<span class="string">'s_name'</span>)</span><br><span class="line">        s_sex = request.form.get(<span class="string">'s_sex'</span>)</span><br><span class="line">        grade_id = request.form.get(<span class="string">'g_name'</span>)</span><br><span class="line"></span><br><span class="line">        stu = Student.query.filter(Student.s_name == s_name).first()</span><br><span class="line">        <span class="keyword">if</span> stu:</span><br><span class="line">            msg = <span class="string">'* 学习姓名不能重复'</span></span><br><span class="line">            grades = Grade.query.all()</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'addstu.html'</span>, grades=grades, msg=msg)</span><br><span class="line">        stu = Student(s_name=s_name, s_sex=s_sex, grade_id=grade_id)</span><br><span class="line">        stu.save()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.student_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/roles/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">roles_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""角色信息列表"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        roles = Role.query.all()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'roles.html'</span>, roles=roles)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/addroles/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_roles</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""添加角色"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'addroles.html'</span>)</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line"></span><br><span class="line">        r_name = request.form.get(<span class="string">'r_name'</span>)</span><br><span class="line">        role = Role(r_name=r_name)</span><br><span class="line">        role.save()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.roles_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/userperlist/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">user_per_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""用户权限列表"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        r_id = request.args.get(<span class="string">'r_id'</span>)</span><br><span class="line">        pers = Role.query.filter(Role.r_id == r_id).first().permission</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'user_per_list.html'</span>, pers=pers)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        r_id = request.args.get(<span class="string">'r_id'</span>)</span><br><span class="line">        p_id = request.form.get(<span class="string">'p_id'</span>)</span><br><span class="line">        <span class="comment"># 获取到角色对象</span></span><br><span class="line">        role = Role.query.get(r_id)</span><br><span class="line">        <span class="comment"># 获取到权限对象</span></span><br><span class="line">        per = Permission.query.get(p_id)</span><br><span class="line">        <span class="comment"># 解除角色和权限的对应关系</span></span><br><span class="line">        per.roles.remove(role)</span><br><span class="line">        <span class="comment"># 保存解除的关联的信息</span></span><br><span class="line">        db.session.commit()</span><br><span class="line">        pers = Role.query.filter(Role.r_id == r_id).first().permission</span><br><span class="line">        <span class="comment"># 返回到用户权限列表</span></span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'user_per_list.html'</span>, pers=pers, r_id=r_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/adduserper/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_user_per</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""添加用户权限"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        permissions = Permission.query.all()</span><br><span class="line">        r_id = request.args.get(<span class="string">'r_id'</span>)</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'add_user_per.html'</span>, permissions=permissions, r_id=r_id)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        r_id = request.form.get(<span class="string">'r_id'</span>)</span><br><span class="line">        p_id = request.form.get(<span class="string">'p_id'</span>)</span><br><span class="line">        <span class="comment"># 获取角色对象</span></span><br><span class="line">        role = Role.query.get(r_id)</span><br><span class="line">        <span class="comment"># 获取权限对象</span></span><br><span class="line">        per = Permission.query.get(p_id)</span><br><span class="line">        <span class="comment"># 添加对应的角色和权限的对应关系</span></span><br><span class="line">        per.roles.append(role)</span><br><span class="line">        <span class="comment"># 添加</span></span><br><span class="line">        db.session.add(per)</span><br><span class="line">        <span class="comment"># 保存信息</span></span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.roles_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/subuserper/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub_user_per</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""减少用户权限"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        r_id = request.args.get(<span class="string">'r_id'</span>)</span><br><span class="line">        pers = Role.query.filter(Role.r_id == r_id).first().permission</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'user_per_list.html'</span>, pers=pers, r_id=r_id)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        r_id = request.args.get(<span class="string">'r_id'</span>)</span><br><span class="line">        p_id = request.form.get(<span class="string">'p_id'</span>)</span><br><span class="line">        role = Role.query.get(r_id)</span><br><span class="line">        per = Permission.query.get(p_id)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 解除角色和权限的对应关系</span></span><br><span class="line">        per.roles.remove(role)</span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line">        pers = Role.query.filter(Role.r_id == r_id).first().permission</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'user_per_list.html'</span>, pers=pers, r_id=r_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/permissions/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">permission_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""权限列表"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        permissions = Permission.query.all()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'permissions.html'</span>, permissions=permissions)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/addpermission/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_permission</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""添加权限"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        pers = Permission.query.all()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'addpermission.html'</span>, pers=pers)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        p_name = request.form.get(<span class="string">'p_name'</span>)</span><br><span class="line">        p_er = request.form.get(<span class="string">'p_er'</span>)</span><br><span class="line"></span><br><span class="line">        p_name_test_repeat = Permission.query.filter(Permission.p_name == p_name).first()</span><br><span class="line">        <span class="keyword">if</span> p_name_test_repeat:</span><br><span class="line">            msg = <span class="string">'*权限名称重复'</span></span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'addpermission.html'</span>, msg=msg)</span><br><span class="line"></span><br><span class="line">        p_er_test_repeat = Permission.query.filter(Permission.p_er == p_er).first()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> p_er_test_repeat:</span><br><span class="line">            msg1 = <span class="string">'*权限简写名重复'</span></span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'addpermission.html'</span>, msg1=msg1)</span><br><span class="line"></span><br><span class="line">        permission = Permission(p_name=p_name, p_er=p_er)</span><br><span class="line">        permission.save()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.permission_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/eidtorpermission/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">eidtor_permission</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""编辑权限"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        p_id = request.args.get(<span class="string">'p_id'</span>)</span><br><span class="line">        pers = Permission.query.filter(Permission.p_id == p_id).first()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'addpermission.html'</span>, pers=pers, p_id=p_id)</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        p_id = request.form.get(<span class="string">'p_id'</span>)</span><br><span class="line">        p_name = request.form.get(<span class="string">'p_name'</span>)</span><br><span class="line">        p_er = request.form.get(<span class="string">'p_er'</span>)</span><br><span class="line"></span><br><span class="line">        p_name_test_repeat = Permission.query.filter(Permission.p_name == p_name).first()</span><br><span class="line">        <span class="keyword">if</span> p_name_test_repeat:</span><br><span class="line">            msg = <span class="string">'*权限名称重复'</span></span><br><span class="line">            pers = Permission.query.all()</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'addpermission.html'</span>, msg=msg, pers=pers)</span><br><span class="line"></span><br><span class="line">        p_er_test_repeat = Permission.query.filter(Permission.p_er == p_er).first()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> p_er_test_repeat:</span><br><span class="line">            msg1 = <span class="string">'*权限简写名重复'</span></span><br><span class="line">            pers = Permission.query.all()</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'addpermission.html'</span>, msg1=msg1, pers=pers)</span><br><span class="line"></span><br><span class="line">        per = Permission.query.filter(Permission.p_id == p_id).first()</span><br><span class="line">        per.p_name = p_name</span><br><span class="line">        per.p_er = p_er</span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.permission_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/userlist/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">user_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""用户信息列表"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        page = int(request.args.get(<span class="string">'page'</span>,<span class="number">1</span>))</span><br><span class="line">        page_num = int(request.args.get(<span class="string">'page_num'</span>,<span class="number">5</span>))</span><br><span class="line">        paginate = User.query.order_by(<span class="string">'u_id'</span>).paginate(page,page_num)</span><br><span class="line">        users = paginate.items</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'users.html'</span>, users=users,paginate=paginate)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/adduser/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_user</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""添加用户信息"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'adduser.html'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        username = request.form.get(<span class="string">'username'</span>)</span><br><span class="line">        password1 = request.form.get(<span class="string">'password1'</span>)</span><br><span class="line">        password2 = request.form.get(<span class="string">'password2'</span>)</span><br><span class="line"></span><br><span class="line">        flag = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> all([username, password1, password2]):</span><br><span class="line">            msg, flag = <span class="string">'请填写完整信息'</span>, <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> len(username) &gt; <span class="number">16</span>:</span><br><span class="line">            msg, flag = <span class="string">'用户名太长'</span>, <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> password1 != password2:</span><br><span class="line">            msg, flag = <span class="string">'两次密码不一致'</span>, <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> flag:</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'adduser.html'</span>, msg=msg)</span><br><span class="line">        user = User(username=username, password=password1)</span><br><span class="line">        user.save()</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.user_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/assignrole/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">assign_user_role</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""分配用户权限"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        u_id = request.args.get(<span class="string">'u_id'</span>)</span><br><span class="line">        roles = Role.query.all()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'assign_user_role.html'</span>, roles=roles, u_id=u_id)</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        r_id = request.form.get(<span class="string">'r_id'</span>)</span><br><span class="line">        u_id = request.form.get(<span class="string">'u_id'</span>)</span><br><span class="line">        user = User.query.filter_by(u_id=u_id).first()</span><br><span class="line">        user.role_id = r_id</span><br><span class="line">        db.session.commit()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">'user.user_list'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/changepwd/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_password</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""修改用户密码"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        username = session.get(<span class="string">'username'</span>)</span><br><span class="line">        user = User.query.filter_by(username=username).first()</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'changepwd.html'</span>, user=user)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        username = session.get(<span class="string">'username'</span>)</span><br><span class="line">        pwd1 = request.form.get(<span class="string">'pwd1'</span>)</span><br><span class="line">        pwd2 = request.form.get(<span class="string">'pwd2'</span>)</span><br><span class="line">        pwd3 = request.form.get(<span class="string">'pwd3'</span>)</span><br><span class="line"></span><br><span class="line">        pwd = User.query.filter(User.password == pwd1, User.username == username).first()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pwd:</span><br><span class="line">            msg = <span class="string">'请输入正确的旧密码'</span></span><br><span class="line">            username = session.get(<span class="string">'username'</span>)</span><br><span class="line">            user = User.query.filter_by(username=username).first()</span><br><span class="line">            <span class="keyword">return</span> render_template(<span class="string">'changepwd.html'</span>, msg=msg, user=user)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> all([pwd2, pwd3]):</span><br><span class="line">                msg = <span class="string">'密码不能为空'</span></span><br><span class="line">                username = session.get(<span class="string">'username'</span>)</span><br><span class="line">                user = User.query.filter_by(username=username).first()</span><br><span class="line">                <span class="keyword">return</span> render_template(<span class="string">'changepwd.html'</span>, msg=msg, user=user)</span><br><span class="line">            <span class="keyword">if</span> pwd2 != pwd3:</span><br><span class="line">                msg = <span class="string">'两次密码不一致,请重新输入'</span></span><br><span class="line">                username = session.get(<span class="string">'username'</span>)</span><br><span class="line">                user = User.query.filter_by(username=username).first()</span><br><span class="line">                <span class="keyword">return</span> render_template(<span class="string">'changepwd.html'</span>, msg=msg, user=user)</span><br><span class="line">            pwd.password = pwd2</span><br><span class="line">            db.session.commit()</span><br><span class="line">            <span class="keyword">return</span> redirect(url_for(<span class="string">'user.change_pass_sucess'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@user_blueprint.route('/changepwdsu/', methods=['GET'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_pass_sucess</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""修改密码成功后"""</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'changepwdsu.html'</span>)</span><br></pre></td></tr></table></figure>
+<p>到这里我们的项目的功能就完全实现了.</p>
+<p>比较重要的地方有分页效果. 在我们数据量大了如何去处理分页数据</p>
+<h6 id="后端代码"><a href="#后端代码" class="headerlink" title="后端代码"></a>后端代码</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@user_blueprint.route('/grade/', methods=['GET', 'POST'])</span></span><br><span class="line"><span class="meta">@is_login</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grade_list</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    显示班级列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="comment"># 查询第几页的数据</span></span><br><span class="line">        page = int(request.args.get(<span class="string">'page'</span>,<span class="number">1</span>))</span><br><span class="line">        <span class="comment"># 每页的条数是多少,默认为5条</span></span><br><span class="line">        page_num = int(request.args.get(<span class="string">'page_num'</span>,<span class="number">5</span>))</span><br><span class="line">        <span class="comment"># 查询当前第几个的多少条数据</span></span><br><span class="line">        paginate = Grade.query.order_by(<span class="string">'g_id'</span>).paginate(page,page_num)</span><br><span class="line">        <span class="comment"># 获取某也的具体数据</span></span><br><span class="line">        grades = paginate.items</span><br><span class="line">        <span class="comment"># 返回获取到的班级信息给前端页面</span></span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">'grade.html'</span>, grades=grades,paginate=paginate)</span><br></pre></td></tr></table></figure>
+<h6 id="前端代码"><a href="#前端代码" class="headerlink" title="前端代码"></a>前端代码</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"MainForm"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form_boxA"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>班级信息列表<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">cellpadding</span>=<span class="string">"0"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>序号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>班级名称<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>创建时间<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            &#123;% for grade in grades %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;grade.g_id &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;grade.g_name &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123;grade.g_create_time&#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/user/edit_grade/?g_id=&#123;&#123;grade.g_id &#125;&#125;"</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">a</span>&gt;</span> |</span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span> |</span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/user/grade_student/?g_id=&#123;&#123;grade.g_id&#125;&#125;"</span>&gt;</span>查看学生<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            &#123;% endfor %&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"msg"</span>&gt;</span>共找到&#123;&#123;paginate.total&#125;&#125;条匹配记录<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"PageNum"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/user/grade/?page=1"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% if paginate.has_prev %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/user/grade/?page=&#123;&#123; paginate.prev_num &#125;&#125;"</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">        &#123;% for p  in paginate.iter_pages() %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                &#123;% if p %&#125;</span><br><span class="line">                    &#123;% if p != paginate.page %&#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/user/grade/?page=&#123;&#123; p &#125;&#125;"</span>&gt;</span>&#123;&#123; p &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    &#123;% else %&#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span>&gt;</span> &#123;&#123; p &#125;&#125; <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                    &#123;% endif %&#125;</span><br><span class="line">                &#123;% else %&#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span>&gt;</span>...<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                &#123;% endif %&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endfor  %&#125;</span><br><span class="line"></span><br><span class="line">        &#123;% if paginate.has_next %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/user/grade/?page=&#123;&#123; paginate.next_num &#125;&#125;"</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/user/grade/?page=&#123;&#123; paginate.pages &#125;&#125;"</span>&gt;</span>尾页<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>| 共&#123;&#123;paginate.pages&#125;&#125;页 | 当前第&#123;&#123;paginate.page&#125;&#125;页<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>项目所有的页面有:</p>
+<p><img src="/2018/06/18/初学者的flask项目/qdym.png" alt="dy"></p>
+<p>需要练习的我都把所有的代码放git上面了.可以去下载哦!!希望对大家学习有帮助.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">下载地址:</span><br><span class="line">https://github.com/Leezhonglin/learingnote/tree/master/flask/flask项目</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/WechatIMG26.jpeg" alt="Mr. Lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/完整的flask项目/" rel="tag"><i class="fa fa-tag"></i> 完整的flask项目</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/06/自定义django中间件实现登录/" rel="next" title="自定义django中间件实现登录">
+                <i class="fa fa-chevron-left"></i> 自定义django中间件实现登录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/avatar.png"
+                alt="Mr. Lee" />
+            
+              <p class="site-author-name" itemprop="name">Mr. Lee</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Leezhonglin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:380604322@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+
+              <ul class="links-of-blogroll-list">
+
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="https://my.csdn.net/jackfrued/" title="大神" target="_blank">
+                        大神
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://www.python.org" title="python" target="_blank">
+                        python
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://redisdoc.com/" title="redis" target="_blank">
+                        redis
+                      </a>
+                    </span>
+                
+
+              </ul>
+
+
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目内容"><span class="nav-number">1.</span> <span class="nav-text">项目内容:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-班级管理"><span class="nav-number">1.1.</span> <span class="nav-text">1,班级管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-学生管理的增删改查"><span class="nav-number">1.2.</span> <span class="nav-text">2,学生管理的增删改查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-权限的增加"><span class="nav-number">1.3.</span> <span class="nav-text">3,权限的增加</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-用户管理"><span class="nav-number">1.4.</span> <span class="nav-text">4,用户管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-系统管理"><span class="nav-number">1.5.</span> <span class="nav-text">5,系统管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-页面分页"><span class="nav-number">1.6.</span> <span class="nav-text">6,页面分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#详细的项目代码"><span class="nav-number">1.7.</span> <span class="nav-text">详细的项目代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-首先介绍一下项目的文件构成-如下图"><span class="nav-number">1.8.</span> <span class="nav-text">1.首先介绍一下项目的文件构成,如下图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-启动文件的配置"><span class="nav-number">1.9.</span> <span class="nav-text">2, 启动文件的配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-重要的配置"><span class="nav-number">1.10.</span> <span class="nav-text">3,重要的配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-登录验证的装饰器"><span class="nav-number">1.11.</span> <span class="nav-text">4,登录验证的装饰器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-建立项目的模型"><span class="nav-number">1.12.</span> <span class="nav-text">5,建立项目的模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-在后台数据库中创建数据库为Htai的数据库"><span class="nav-number">1.13.</span> <span class="nav-text">6,在后台数据库中创建数据库为Htai的数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-开始写我们的视图中的代码"><span class="nav-number">1.14.</span> <span class="nav-text">7,开始写我们的视图中的代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-我们来实现第一个功能查看我们的首页"><span class="nav-number">1.15.</span> <span class="nav-text">8,我们来实现第一个功能查看我们的首页</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#后端代码"><span class="nav-number">1.15.1.</span> <span class="nav-text">后端代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#前端代码"><span class="nav-number">1.15.2.</span> <span class="nav-text">前端代码</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr. Lee</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/Leezhonglin">Leezhonglin</a> 提供技术支持</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量:<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+</div>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共:19.4k字</span>
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
