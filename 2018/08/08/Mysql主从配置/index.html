@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/08/Mysql主从配置/5tyu.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/08/Mysql主从配置/6.shuj.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/08/Mysql主从配置/7uio.png">
-<meta property="og:updated_time" content="2018-08-08T11:03:12.000Z">
+<meta property="og:updated_time" content="2018-08-08T12:02:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql主从配置">
 <meta name="twitter:description" content="Mysql主从配置​    大型网站为了软解大量的并发访问，除了在网站实现分布式负载均衡，远远不够。到了数据业务层、数据访问层，如果还是传统的数据结构，或者只是单单靠一台服务器扛，如此多的数据库连接操作，数据库必然会崩溃，数据丢失的话，后果更是不堪设想。这时候，我们会考虑如何减少数据库的联接，一方面采用优秀的代码框架，进行代码的优化，采用优秀的数据缓存技术如：memcached,如果资金丰厚的话，">
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,482
+                  1,483
                 </span>
               
 
@@ -444,7 +444,7 @@
 <p>如果配置了同步的数据库,则在从机数据库上面要有一个和主机配置的数据库一样的数据库.</p>
 </blockquote>
 <p>配置从机连接master</p>
-<p><code>change master to master_host=&#39;192.168.1.200&#39;,master_user=&#39;mark&#39; ,master_password=&#39;12345&#39;, master_log_file=&#39;mysql- bin-200.000004&#39; ,master_log_pos=671;</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=<span class="string">'192.168.1.200'</span>,master_user=<span class="string">'mark'</span> ,master_password=<span class="string">'12345'</span>, master_log_file=<span class="string">'mysql- bin-200.000004'</span> ,master_log_pos=<span class="number">671</span>;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>参数说明:</p>
 <p><code>master_host</code>: 主机的ip</p>
@@ -848,8 +848,6 @@
   
 
 
-  
-
 
 
 
@@ -888,11 +886,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
