@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vim常用命令," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="【转发】曾经使用了两年多的Vim，手册也翻过一遍。虽然现在不怎么用vim了，曾经的笔记还是贴出来，与喜欢vim的朋友分享。 1. 关于Vimvim是我最喜欢的编辑器，也是Linux下第二强大的编辑器。 虽然emacs是公认的世界第一，我认为使用emacs并没有使用vi进行编辑来得高效。 如果是初学vi，运行一下vimtutor是个聪明的决定。 （如果你的系统环境不是中文，而你想使用中文的vimtu">
+<meta name="keywords" content="vim常用命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim 操作命令大全">
+<meta property="og:url" content="http://yoursite.com/2018/08/21/vim-操作命令大全/index.html">
+<meta property="og:site_name" content="Mr. Lee&#39;s blog">
+<meta property="og:description" content="【转发】曾经使用了两年多的Vim，手册也翻过一遍。虽然现在不怎么用vim了，曾经的笔记还是贴出来，与喜欢vim的朋友分享。 1. 关于Vimvim是我最喜欢的编辑器，也是Linux下第二强大的编辑器。 虽然emacs是公认的世界第一，我认为使用emacs并没有使用vi进行编辑来得高效。 如果是初学vi，运行一下vimtutor是个聪明的决定。 （如果你的系统环境不是中文，而你想使用中文的vimtu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-21T12:46:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim 操作命令大全">
+<meta name="twitter:description" content="【转发】曾经使用了两年多的Vim，手册也翻过一遍。虽然现在不怎么用vim了，曾经的笔记还是贴出来，与喜欢vim的朋友分享。 1. 关于Vimvim是我最喜欢的编辑器，也是Linux下第二强大的编辑器。 虽然emacs是公认的世界第一，我认为使用emacs并没有使用vi进行编辑来得高效。 如果是初学vi，运行一下vimtutor是个聪明的决定。 （如果你的系统环境不是中文，而你想使用中文的vimtu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/21/vim-操作命令大全/"/>
+
+
+
+
+
+  <title>vim 操作命令大全 | Mr. Lee's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr. Lee's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">知识改变命运,技术成就梦想</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/21/vim-操作命令大全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr. Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr. Lee's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">vim 操作命令大全</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-21T20:45:12+08:00">
+                2018-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7,835
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  30
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>【转发】曾经使用了两年多的Vim，手册也翻过一遍。虽然现在不怎么用vim了，曾经的笔记还是贴出来，与喜欢vim的朋友分享。</p>
+<h1 id="1-关于Vim"><a href="#1-关于Vim" class="headerlink" title="1. 关于Vim"></a>1. 关于Vim</h1><p>vim是我最喜欢的编辑器，也是<a href="http://lib.csdn.net/base/linux" target="_blank" rel="noopener">Linux</a>下第二强大的编辑器。 虽然emacs是公认的世界第一，我认为使用emacs并没有使用vi进行编辑来得高效。 如果是初学vi，运行一下vimtutor是个聪明的决定。 （如果你的系统环境不是中文，而你想使用中文的vimtutor，就运行vimtutor zh）</p>
+<h2 id="1-1-Vim的几种模式"><a href="#1-1-Vim的几种模式" class="headerlink" title="1.1 Vim的几种模式"></a>1.1 Vim的几种模式</h2><ul>
+<li>正常模式：可以使用快捷键命令，或按:输入命令行。</li>
+<li>插入模式：可以输入文本，在正常模式下，按i、a、o等都可以进入插入模式。</li>
+<li>可视模式：正常模式下按v可以进入可视模式， 在可视模式下，移动光标可以选择文本。按V进入可视行模式， 总是整行整行的选中。ctrl+v进入可视块模式。</li>
+<li>替换模式：正常模式下，按R进入。</li>
+</ul>
+<h1 id="2-启动Vim"><a href="#2-启动Vim" class="headerlink" title="2. 启动Vim"></a>2. 启动Vim</h1><ul>
+<li>vim -c cmd file: 在打开文件前，先执行指定的命令；</li>
+<li>vim -r file: 恢复上次异常退出的文件；</li>
+<li>vim -R file: 以只读的方式打开文件，但可以强制保存；</li>
+<li>vim -M file: 以只读的方式打开文件，不可以强制保存；</li>
+<li>vim -y num file: 将编辑窗口的大小设为num行；</li>
+<li>vim + file: 从文件的末尾开始；</li>
+<li>vim +num file: 从第num行开始；</li>
+<li>vim +/string file: 打开file，并将光标停留在第一个找到的string上。</li>
+<li>vim –remote file: 用已有的vim进程打开指定的文件。 如果你不想启用多个vim会话，这个很有用。但要注意， 如果你用vim，会寻找名叫VIM的服务器；如果你已经有一个gvim在运行了， 你可以用gvim –remote file在已有的gvim中打开文件。</li>
+</ul>
+<h1 id="3-文档操作"><a href="#3-文档操作" class="headerlink" title="3. 文档操作"></a>3. 文档操作</h1><ul>
+<li>:e file –关闭当前编辑的文件，并开启新的文件。 如果对当前文件的修改未保存，vi会警告。</li>
+<li>:e! file –放弃对当前文件的修改，编辑新的文件。</li>
+<li>:e+file – 开始新的文件，并从文件尾开始编辑。</li>
+<li>:e+n file – 开始新的文件，并从第n行开始编辑。</li>
+<li>:enew –编译一个未命名的新文档。(CTRL-W n)</li>
+<li>:e – 重新加载当前文档。</li>
+<li>:e! – 重新加载当前文档，并丢弃已做的改动。</li>
+<li>:e#或ctrl+^ – 回到刚才编辑的文件，很实用。</li>
+<li>:f或ctrl+g – 显示文档名，是否修改，和光标位置。</li>
+<li>:f filename – 改变编辑的文件名，这时再保存相当于另存为。</li>
+<li>gf – 打开以光标所在字符串为文件名的文件。</li>
+<li>:w – 保存修改。</li>
+<li>:n1,n2w filename – 选择性保存从某n1行到另n2行的内容。</li>
+<li>:wq – 保存并退出。</li>
+<li>ZZ – 保存并退出。</li>
+<li>:x – 保存并退出。</li>
+<li>:q[uit] ——退出当前窗口。(CTRL-W q或CTRL-W CTRL-Q)</li>
+<li>:saveas newfilename – 另存为</li>
+<li>:browse e – 会打开一个文件浏览器让你选择要编辑的文件。 如果是终端中，则会打开netrw的文件浏览窗口； 如果是gvim，则会打开一个图形界面的浏览窗口。 实际上:browse后可以跟任何编辑文档的命令，如sp等。 用browse打开的起始目录可以由browsedir来设置：<ul>
+<li>:set browsedir=last – 用上次访问过的目录（默认）；</li>
+<li>:set browsedir=buffer – 用当前文件所在目录；</li>
+<li>:set browsedir=current – 用当前工作目录；</li>
+</ul>
+</li>
+<li>:Sex – 水平分割一个窗口，浏览文件系统；</li>
+<li>:Vex – 垂直分割一个窗口，浏览文件系统；</li>
+</ul>
+<h1 id="4-光标的移动"><a href="#4-光标的移动" class="headerlink" title="4. 光标的移动"></a>4. 光标的移动</h1><h2 id="4-1-基本移动"><a href="#4-1-基本移动" class="headerlink" title="4.1 基本移动"></a>4.1 基本移动</h2><p>以下移动都是在normal模式下。</p>
+<ul>
+<li>h或退格: 左移一个字符；</li>
+<li>l或空格: 右移一个字符；</li>
+<li>j: 下移一行；</li>
+<li>k: 上移一行；</li>
+<li>gj: 移动到一段内的下一行；</li>
+<li>gk: 移动到一段内的上一行；</li>
+<li>+或Enter: 把光标移至下一行第一个非空白字符。</li>
+<li>-: 把光标移至上一行第一个非空白字符。</li>
+<li>w: 前移一个单词，光标停在下一个单词开头；</li>
+<li>W: 移动下一个单词开头，但忽略一些标点；</li>
+<li>e: 前移一个单词，光标停在下一个单词末尾；</li>
+<li>E: 移动到下一个单词末尾，如果词尾有标点，则移动到标点；</li>
+<li>b: 后移一个单词，光标停在上一个单词开头；</li>
+<li>B: 移动到上一个单词开头，忽略一些标点；</li>
+<li>ge: 后移一个单词，光标停在上一个单词末尾；</li>
+<li>gE: 同 ge ，不过‘单词’包含单词相邻的标点。</li>
+<li>(: 前移1句。</li>
+<li>): 后移1句。</li>
+<li>{: 前移1段。</li>
+<li>}: 后移1段。</li>
+<li>fc: 把光标移到同一行的下一个c字符处</li>
+<li>Fc: 把光标移到同一行的上一个c字符处</li>
+<li>tc: 把光标移到同一行的下一个c字符前</li>
+<li>Tc: 把光标移到同一行的上一个c字符后</li>
+<li>;: 配合f &amp; t使用，重复一次</li>
+<li>,: 配合f &amp; t使用，反向重复一次</li>
+</ul>
+<p>上面的操作都可以配合n使用，比如在正常模式(下面会讲到)下输入3h， 则光标向左移动3个字符。</p>
+<ul>
+<li>0: 移动到行首。</li>
+<li>g0: 移到光标所在屏幕行行首。</li>
+<li>^: 移动到本行第一个非空白字符。</li>
+<li>g^: 同 ^ ，但是移动到当前屏幕行第一个非空字符处。</li>
+<li>:移动到行尾。</li>&lt;listyle=”list−style:inherit!important”&gt;g:移动到行尾。&lt;listyle=”list−style:inherit!important”&gt;g: 移动光标所在屏幕行行尾。
+<li>n|: 把光标移到递n列上。</li>
+<li>nG: 到文件第n行。</li>
+<li>:n<cr> 移动到第n行。</cr></li>
+<li>:$<cr> 移动到最后一行。</cr></li>
+<li>H: 把光标移到屏幕最顶端一行。</li>
+<li>M: 把光标移到屏幕中间一行。</li>
+<li>L: 把光标移到屏幕最底端一行。</li>
+<li>gg: 到文件头部。</li>
+<li>G: 到文件尾部。</li>
+</ul>
+<h2 id="4-2-翻屏"><a href="#4-2-翻屏" class="headerlink" title="4.2 翻屏"></a>4.2 翻屏</h2><ul>
+<li>ctrl+f: 下翻一屏。</li>
+<li>ctrl+b: 上翻一屏。</li>
+<li>ctrl+d: 下翻半屏。</li>
+<li>ctrl+u: 上翻半屏。</li>
+<li>ctrl+e: 向下滚动一行。</li>
+<li>ctrl+y: 向上滚动一行。</li>
+<li>n%: 到文件n%的位置。</li>
+<li>zz: 将当前行移动到屏幕中央。</li>
+<li>zt: 将当前行移动到屏幕顶端。</li>
+<li>zb: 将当前行移动到屏幕底端。</li>
+</ul>
+<h2 id="4-3-标记"><a href="#4-3-标记" class="headerlink" title="4.3 标记"></a>4.3 标记</h2><p>使用标记可以快速移动。到达标记后，可以用Ctrl+o返回原来的位置。 Ctrl+o和Ctrl+i 很像浏览器上的 <em>后退</em> 和 <em>前进</em> 。</p>
+<ul>
+<li>m{a-z}: 标记光标所在位置，局部标记，只用于当前文件。</li>
+<li>m{A-Z}: 标记光标所在位置，全局标记。标记之后，退出Vim， 重新启动，标记仍然有效。</li>
+<li>`{a-z}: 移动到标记位置。</li>
+<li>‘{a-z}: 移动到标记行的行首。</li>
+<li>`{0-9}：回到上[2-10]次关闭vim时最后离开的位置。</li>
+<li>“: 移动到上次编辑的位置。”也可以，不过“精确到列，而”精确到行 。如果想跳转到更老的位置，可以按C-o，跳转到更新的位置用C-i。</li>
+<li>`”: 移动到上次离开的地方。</li>
+<li>`.: 移动到最后改动的地方。</li>
+<li>:marks 显示所有标记。</li>
+<li>:delmarks a b – 删除标记a和b。</li>
+<li>:delmarks a-c – 删除标记a、b和c。</li>
+<li>:delmarks a c-f – 删除标记a、c、d、e、f。</li>
+<li>:delmarks! – 删除当前缓冲区的所有标记。</li>
+<li>:help mark-motions 查看更多关于mark的知识。</li>
+</ul>
+<h1 id="5-插入文本"><a href="#5-插入文本" class="headerlink" title="5. 插入文本"></a>5. 插入文本</h1><h2 id="5-1-基本插入"><a href="#5-1-基本插入" class="headerlink" title="5.1 基本插入"></a>5.1 基本插入</h2><ul>
+<li>i: 在光标前插入；一个小技巧：按8，再按i，进入插入模式，输入=， 按esc进入命令模式，就会出现8个=。 这在插入分割线时非常有用，如30i+<esc>就插入了36个+组成的分割线。</esc></li>
+<li>I: 在当前行第一个非空字符前插入；</li>
+<li>gI: 在当前行第一列插入；</li>
+<li>a: 在光标后插入；</li>
+<li>A: 在当前行最后插入；</li>
+<li>o: 在下面新建一行插入；</li>
+<li>O: 在上面新建一行插入；</li>
+<li>:r filename在当前位置插入另一个文件的内容。</li>
+<li>:[n]r filename在第n行插入另一个文件的内容。</li>
+<li>:r !date 在光标处插入当前日期与时间。同理，:r !command可以将其它shell命令的输出插入当前文档。</li>
+</ul>
+<h2 id="5-2-改写插入"><a href="#5-2-改写插入" class="headerlink" title="5.2 改写插入"></a>5.2 改写插入</h2><ul>
+<li>c[n]w: 改写光标后1(n)个词。</li>
+<li>c[n]l: 改写光标后n个字母。</li>
+<li>c[n]h: 改写光标前n个字母。</li>
+<li>[n]cc: 修改当前[n]行。</li>
+<li>[n]s: 以输入的文本替代光标之后1(n)个字符，相当于c[n]l。</li>
+<li>[n]S: 删除指定数目的行，并以所输入文本代替之。</li>
+</ul>
+<p>注意，类似cnw,dnw,ynw的形式同样可以写为ncw,ndw,nyw。</p>
+<h1 id="6-剪切复制和寄存器"><a href="#6-剪切复制和寄存器" class="headerlink" title="6. 剪切复制和寄存器"></a>6. 剪切复制和寄存器</h1><h2 id="6-1-剪切和复制、粘贴"><a href="#6-1-剪切和复制、粘贴" class="headerlink" title="6.1 剪切和复制、粘贴"></a>6.1 剪切和复制、粘贴</h2><ul>
+<li>[n]x: 剪切光标右边n个字符，相当于d[n]l。</li>
+<li>[n]X: 剪切光标左边n个字符，相当于d[n]h。</li>
+<li>y: 复制在可视模式下选中的文本。</li>
+<li>yy or Y: 复制整行文本。</li>
+<li>y[n]w: 复制一(n)个词。</li>
+<li>y[n]l: 复制光标右边1(n)个字符。</li>
+<li>y[n]h: 复制光标左边1(n)个字符。</li>
+<li>y: 从光标当前位置复制到行尾。</li><li style="list-style:inherit!important">y0: 从光标当前位置复制到行首。</li><li style="list-style:inherit!important">:m,ny&lt;cr&gt; 复制m行到n行的内容。</li><li style="list-style:inherit!important">y1G或ygg: 复制光标以上的所有行。</li><li style="list-style:inherit!important">yG: 复制光标以下的所有行。</li><li style="list-style:inherit!important">yaw和yas：复制一个词和复制一个句子，即使光标不在词首和句首也没关系。</li><li style="list-style:inherit!important">d: 删除（剪切）在可视模式下选中的文本。</li><li style="list-style:inherit!important">d: 从光标当前位置复制到行尾。</li><li style="list-style:inherit!important">y0: 从光标当前位置复制到行首。</li><li style="list-style:inherit!important">:m,ny&lt;cr&gt; 复制m行到n行的内容。</li><li style="list-style:inherit!important">y1G或ygg: 复制光标以上的所有行。</li><li style="list-style:inherit!important">yG: 复制光标以下的所有行。</li><li style="list-style:inherit!important">yaw和yas：复制一个词和复制一个句子，即使光标不在词首和句首也没关系。</li><li style="list-style:inherit!important">d: 删除（剪切）在可视模式下选中的文本。</li><li style="list-style:inherit!important">dor D: 删除（剪切）当前位置到行尾的内容。</li>
+<li>d[n]w: 删除（剪切）1(n)个单词</li>
+<li>d[n]l: 删除（剪切）光标右边1(n)个字符。</li>
+<li>d[n]h: 删除（剪切）光标左边1(n)个字符。</li>
+<li>d0: 删除（剪切）当前位置到行首的内容</li>
+<li>[n] dd: 删除（剪切）1(n)行。</li>
+<li>:m,nd<cr> 剪切m行到n行的内容。</cr></li>
+<li>d1G或dgg: 剪切光标以上的所有行。</li>
+<li>dG: 剪切光标以下的所有行。</li>
+<li>daw和das：剪切一个词和剪切一个句子，即使光标不在词首和句首也没关系。</li>
+<li>d/f<cr>：这是一个比较高级的组合命令，它将删除当前位置 到下一个f之间的内容。</cr></li>
+<li>p: 在光标之后粘贴。</li>
+<li>P: 在光标之前粘贴。</li>
+</ul>
+<h2 id="6-2-文本对象"><a href="#6-2-文本对象" class="headerlink" title="6.2 文本对象"></a>6.2 文本对象</h2><ul>
+<li>aw：一个词</li>
+<li>as：一句。</li>
+<li>ap：一段。</li>
+<li>ab：一块（包含在圆括号中的）。</li>
+</ul>
+<p>y, d, c, v都可以跟文本对象。</p>
+<h2 id="6-3-寄存器"><a href="#6-3-寄存器" class="headerlink" title="6.3 寄存器"></a>6.3 寄存器</h2><ul>
+<li>a-z：都可以用作寄存器名。”ayy把当前行的内容放入a寄存器。</li>
+<li>A-Z：用大写字母索引寄存器，可以在寄存器中追加内容。 如”Ayy把当前行的内容追加到a寄存器中。</li>
+<li>:reg 显示所有寄存器的内容。</li>
+<li>“”：不加寄存器索引时，默认使用的寄存器。</li>
+<li>“<em>：当前选择缓冲区，”</em>yy把当前行的内容放入当前选择缓冲区。</li>
+<li>“+：系统剪贴板。”+yy把当前行的内容放入系统剪贴板。</li>
+</ul>
+<h1 id="7-查找与替换"><a href="#7-查找与替换" class="headerlink" title="7. 查找与替换"></a>7. 查找与替换</h1><h2 id="7-1-查找"><a href="#7-1-查找" class="headerlink" title="7.1 查找"></a>7.1 查找</h2><ul>
+<li>/something: 在后面的文本中查找something。</li>
+<li>?something: 在前面的文本中查找something。</li>
+<li>/pattern/+number: 将光标停在包含pattern的行后面第number行上。</li>
+<li>/pattern/-number: 将光标停在包含pattern的行前面第number行上。</li>
+<li>n: 向后查找下一个。</li>
+<li>N: 向前查找下一个。</li>
+</ul>
+<p>可以用grep或vimgrep查找一个模式都在哪些地方出现过，</p>
+<p>其中:grep是调用外部的grep程序，而:vimgrep是vim自己的查找算法。</p>
+<p>用法为： :vim[grep]/pattern/[g][j] files</p>
+<p>g的含义是如果一个模式在一行中多次出现，则这一行也在结果中多次出现。</p>
+<p>j的含义是grep结束后，结果停在第j项，默认是停在第一项。</p>
+<p>vimgrep前面可以加数字限定搜索结果的上限，如</p>
+<p>:1vim/pattern/ % 只查找那个模式在本文件中的第一个出现。</p>
+<p>其实vimgrep在读纯文本电子书时特别有用，可以生成导航的目录。</p>
+<p>比如电子书中每一节的标题形式为：n. xxxx。你就可以这样：</p>
+<p>:vim/^d{1,}./ %</p>
+<p>然后用:cw或:copen查看结果，可以用C-w H把quickfix窗口移到左侧，</p>
+<p>就更像个目录了。</p>
+<h2 id="7-2-替换"><a href="#7-2-替换" class="headerlink" title="7.2 替换"></a>7.2 替换</h2><ul>
+<li>:s/old/new - 用new替换当前行第一个old。</li>
+<li>:s/old/new/g - 用new替换当前行所有的old。</li>
+<li>:n1,n2s/old/new/g - 用new替换文件n1行到n2行所有的old。</li>
+<li>:%s/old/new/g - 用new替换文件中所有的old。</li>
+<li>:%s/^/xxx/g - 在每一行的行首插入xxx，^表示行首。</li>
+<li>:%s//xxx/g−在每一行的行尾插入xxx，/xxx/g−在每一行的行尾插入xxx，表示行尾。</li>
+<li>所有替换命令末尾加上c，每个替换都将需要用户确认。 如：%s/old/new/gc，加上i则忽略大小写(ignore)。</li>
+</ul>
+<p>还有一种比替换更灵活的方式，它是匹配到某个模式后执行某种命令，</p>
+<p>语法为 :[range]g/pattern/command</p>
+<p>例如 :%g/^ xyz/normal dd。</p>
+<p>表示对于以一个空格和xyz开头的行执行normal模式下的dd命令。</p>
+<p>关于range的规定为：</p>
+<ul>
+<li>如果不指定range，则表示当前行。</li>
+<li>m,n: 从m行到n行。</li>
+<li>0: 最开始一行（可能是这样）。</li>
+<li>$: 最后一行</li>
+<li>.: 当前行</li>
+<li>%: 所有行</li>
+</ul>
+<h2 id="7-3-正则表达式"><a href="#7-3-正则表达式" class="headerlink" title="7.3 正则表达式"></a>7.3 正则表达式</h2><p>高级的查找替换就要用到正则表达式。</p>
+<ul>
+<li>\d: 表示十进制数（我猜的）</li>
+<li>\s: 表示空格</li>
+<li>\S: 非空字符</li>
+<li>\a: 英文字母</li>
+<li>|: 表示 或</li>
+<li>.: 表示.</li>
+<li>{m,n}: 表示m到n个字符。这要和 \s与\a等连用，如 \a{m,n} 表示m 到n个英文字母。</li>
+<li>{m,}: 表示m到无限多个字符。</li>
+<li>**: 当前目录下的所有子目录。</li>
+</ul>
+<p>:help pattern得到更多帮助。</p>
+<hr>
+<h1 id="8-排版"><a href="#8-排版" class="headerlink" title="8. 排版"></a>8. 排版</h1><h2 id="8-1-基本排版"><a href="#8-1-基本排版" class="headerlink" title="8.1 基本排版"></a>8.1 基本排版</h2><ul>
+<li><p>&lt;&lt; 向左缩进一个shiftwidth</p>
+</li>
+<li><blockquote>
+<blockquote>
+<p>向右缩进一个shiftwidth</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>:ce(nter) 本行文字居中</p>
+</li>
+<li><p>:le(ft) 本行文字靠左</p>
+</li>
+<li><p>:ri(ght) 本行文字靠右</p>
+</li>
+<li><p>gq 对选中的文字重排，即对过长的文字进行断行</p>
+</li>
+<li><p>gqq 重排当前行</p>
+</li>
+<li><p>gqnq 重排n行</p>
+</li>
+<li><p>gqap 重排当前段</p>
+</li>
+<li><p>gqnap 重排n段</p>
+</li>
+<li><p>gqnj 重排当前行和下面n行</p>
+</li>
+<li><p>gqQ 重排当前段对文章末尾</p>
+</li>
+<li><p>J 拼接当前行和下一行</p>
+</li>
+<li><p>gJ 同 J ，不过合并后不留空格。</p>
+</li>
+</ul>
+<h2 id="8-2-拼写检查"><a href="#8-2-拼写检查" class="headerlink" title="8.2 拼写检查"></a>8.2 拼写检查</h2><ul>
+<li>:set spell－开启拼写检查功能</li>
+<li>:set nospell－关闭拼写检查功能</li>
+<li>]s－移到下一个拼写错误的单词</li>
+<li>[s－作用与上一命令类似，但它是从相反方向进行搜索</li>
+<li>z=－显示一个有关拼写错误单词的列表，可从中选择</li>
+<li>zg－告诉拼写检查器该单词是拼写正确的</li>
+<li>zw－与上一命令相反，告诉拼写检查器该单词是拼写错误的</li>
+</ul>
+<h2 id="8-3-统计字数"><a href="#8-3-统计字数" class="headerlink" title="8.3 统计字数"></a>8.3 统计字数</h2><p>g ^g可以统计文档字符数，行数。 将光标放在最后一个字符上，用字符数减去行数可以粗略统计中文文档的字数。 以上对 Mac 或 Unix 的文件格式适用。 如果是 Windows 文件格式（即换行符有两个字节），字数的统计方法为： 字符数 - 行数 * 2。</p>
+<hr>
+<h1 id="9-编辑多个文件"><a href="#9-编辑多个文件" class="headerlink" title="9. 编辑多个文件"></a>9. 编辑多个文件</h1><h2 id="9-1-一次编辑多个文件"><a href="#9-1-一次编辑多个文件" class="headerlink" title="9.1 一次编辑多个文件"></a>9.1 一次编辑多个文件</h2><p>我们可以一次打开多个文件，如</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; vi a.txt b.txt c.txt</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>使用:next(:n)编辑下一个文件。</li>
+<li>:2n 编辑下2个文件。</li>
+<li>使用:previous或:N编辑上一个文件。</li>
+<li>使用:wnext，保存当前文件，并编辑下一个文件。</li>
+<li>使用:wprevious，保存当前文件，并编辑上一个文件。</li>
+<li>使用:args 显示文件列表。</li>
+<li>:n filenames或:args filenames 指定新的文件列表。</li>
+<li>vi -o filenames 在水平分割的多个窗口中编辑多个文件。</li>
+<li>vi -O filenames 在垂直分割的多个窗口中编辑多个文件。</li>
+</ul>
+<h2 id="9-2-多标签编辑"><a href="#9-2-多标签编辑" class="headerlink" title="9.2 多标签编辑"></a>9.2 多标签编辑</h2><ul>
+<li>vim -p files: 打开多个文件，每个文件占用一个标签页。</li>
+<li>:tabe, tabnew – 如果加文件名，就在新的标签中打开这个文件， 否则打开一个空缓冲区。</li>
+<li>^w gf – 在新的标签页里打开光标下路径指定的文件。</li>
+<li>:tabn – 切换到下一个标签。Control + PageDown，也可以。</li>
+<li>:tabp – 切换到上一个标签。Control + PageUp，也可以。</li>
+<li>[n] gt – 切换到下一个标签。如果前面加了 n ， 就切换到第n个标签。第一个标签的序号就是1。</li>
+<li>:tab split – 将当前缓冲区的内容在新页签中打开。</li>
+<li>:tabc[lose] – 关闭当前的标签页。</li>
+<li>:tabo[nly] – 关闭其它的标签页。</li>
+<li>:tabs – 列出所有的标签页和它们包含的窗口。</li>
+<li>:tabm[ove][N] – 移动标签页，移动到第N个标签页之后。 如 tabm 0 当前标签页，就会变成第一个标签页。</li>
+</ul>
+<h2 id="9-3-缓冲区"><a href="#9-3-缓冲区" class="headerlink" title="9.3 缓冲区"></a>9.3 缓冲区</h2><ul>
+<li>:buffers或:ls或:files 显示缓冲区列表。</li>
+<li>ctrl+^：在最近两个缓冲区间切换。</li>
+<li>:bn – 下一个缓冲区。</li>
+<li>:bp – 上一个缓冲区。</li>
+<li>:bl – 最后一个缓冲区。</li>
+<li>:b[n]或:[n]b – 切换到第n个缓冲区。</li>
+<li>:nbw(ipeout) – 彻底删除第n个缓冲区。</li>
+<li>:nbd(elete) – 删除第n个缓冲区，并未真正删除，还在unlisted列表中。</li>
+<li>:ba[ll] – 把所有的缓冲区在当前页中打开，每个缓冲区占一个窗口。</li>
+</ul>
+<h1 id="10-分屏编辑"><a href="#10-分屏编辑" class="headerlink" title="10. 分屏编辑"></a>10. 分屏编辑</h1><ul>
+<li>vim -o file1 file2:水平分割窗口，同时打开file1和file2</li>
+<li>vim -O file1 file2:垂直分割窗口，同时打开file1和file2</li>
+</ul>
+<h2 id="10-1-水平分割"><a href="#10-1-水平分割" class="headerlink" title="10.1 水平分割"></a>10.1 水平分割</h2><ul>
+<li>:split(:sp) – 把当前窗水平分割成两个窗口。(CTRL-W s 或 CTRL-W CTRL-S) 注意如果在终端下，CTRL-S可能会冻结终端，请按CTRL-Q继续。</li>
+<li>:split filename – 水平分割窗口，并在新窗口中显示另一个文件。</li>
+<li>:nsplit(:nsp) – 水平分割出一个n行高的窗口。</li>
+<li>:[N]new – 水平分割出一个N行高的窗口，并编辑一个新文件。 (CTRL-W n或 CTRL-W CTRL-N)</li>
+<li>ctrl+w f –水平分割出一个窗口，并在新窗口打开名称为光标所在词的文件 。</li>
+<li>C-w C-^ – 水平分割一个窗口，打开刚才编辑的文件。</li>
+</ul>
+<h2 id="10-2-垂直分割"><a href="#10-2-垂直分割" class="headerlink" title="10.2 垂直分割"></a>10.2 垂直分割</h2><ul>
+<li>:vsplit(:vsp) – 把当前窗口分割成水平分布的两个窗口。 (CTRL-W v或CTRL CTRL-V)</li>
+<li>:[N]vne[w] – 垂直分割出一个新窗口。</li>
+<li>:vertical 水平分割的命令： 相应的垂直分割。</li>
+</ul>
+<h2 id="10-3-关闭子窗口"><a href="#10-3-关闭子窗口" class="headerlink" title="10.3 关闭子窗口"></a>10.3 关闭子窗口</h2><ul>
+<li>:qall – 关闭所有窗口，退出vim。</li>
+<li>:wall – 保存所有修改过的窗口。</li>
+<li>:only – 只保留当前窗口，关闭其它窗口。(CTRL-W o)</li>
+<li>:close – 关闭当前窗口，CTRL-W c能实现同样的功能。 (象 :q :x同样工作 )</li>
+</ul>
+<h2 id="10-4-调整窗口大小"><a href="#10-4-调整窗口大小" class="headerlink" title="10.4 调整窗口大小"></a>10.4 调整窗口大小</h2><ul>
+<li>ctrl+w + –当前窗口增高一行。也可以用n增高n行。</li>
+<li>ctrl+w - –当前窗口减小一行。也可以用n减小n行。</li>
+<li>ctrl+w _ –当前窗口扩展到尽可能的大。也可以用n设定行数。</li>
+<li>:resize n – 当前窗口n行高。</li>
+<li>ctrl+w = – 所有窗口同样高度。</li>
+<li>n ctrl+w _ – 当前窗口的高度设定为n行。</li>
+<li>ctrl+w &lt; –当前窗口减少一列。也可以用n减少n列。</li>
+<li>ctrl+w &gt; –当前窗口增宽一列。也可以用n增宽n列。</li>
+<li>ctrl+w | –当前窗口尽可能的宽。也可以用n设定列数。</li>
+</ul>
+<h2 id="10-5-切换和移动窗口"><a href="#10-5-切换和移动窗口" class="headerlink" title="10.5 切换和移动窗口"></a>10.5 切换和移动窗口</h2><p>如果支持鼠标，切换和调整子窗口的大小就简单了。</p>
+<ul>
+<li>ctrl+w ctrl+w: 切换到下一个窗口。或者是ctrl+w w。</li>
+<li>ctrl+w p: 切换到前一个窗口。</li>
+<li>ctrl+w h(l,j,k):切换到左（右，下，上）的窗口。</li>
+<li>ctrl+w t(b):切换到最上（下）面的窗口。<br></li>
+<li>ctrl+w H(L,K,J): 将当前窗口移动到最左（右、上、下）面。</li>
+<li>ctrl+w r：旋转窗口的位置。</li>
+<li>ctrl+w T: 将当前的窗口移动到新的标签页上。</li>
+</ul>
+<h1 id="11-快速编辑"><a href="#11-快速编辑" class="headerlink" title="11. 快速编辑"></a>11. 快速编辑</h1><h2 id="11-1-改变大小写"><a href="#11-1-改变大小写" class="headerlink" title="11.1 改变大小写"></a>11.1 改变大小写</h2><ul>
+<li>~: 反转光标所在字符的大小写。</li>
+<li>可视模式下的U或u：把选中的文本变为大写或小写。</li>
+<li>gu(U)接范围（如$，或G），可以把从光标当前位置到指定位置之间字母全部 转换成小写或大写。如ggguG，就是把开头到最后一行之间的字母全部变为小 写。再如gu5j，把当前行和下面四行全部变成小写。</li>
+</ul>
+<h2 id="11-2-替换（normal模式）"><a href="#11-2-替换（normal模式）" class="headerlink" title="11.2 替换（normal模式）"></a>11.2 替换（normal模式）</h2><ul>
+<li>r: 替换光标处的字符，同样支持汉字。</li>
+<li>R: 进入替换模式，按esc回到正常模式。</li>
+</ul>
+<h2 id="11-3-撤消与重做（normal模式）"><a href="#11-3-撤消与重做（normal模式）" class="headerlink" title="11.3 撤消与重做（normal模式）"></a>11.3 撤消与重做（normal模式）</h2><ul>
+<li>[n] u: 取消一(n)个改动。</li>
+<li>:undo 5 – 撤销5个改变。</li>
+<li>:undolist – 你的撤销历史。</li>
+<li>ctrl + r: 重做最后的改动。</li>
+<li>U: 取消当前行中所有的改动。</li>
+<li>:earlier 4m – 回到4分钟前</li>
+<li>:later 55s – 前进55秒</li>
+</ul>
+<h2 id="11-4-宏"><a href="#11-4-宏" class="headerlink" title="11.4 宏"></a>11.4 宏</h2><ul>
+<li>. –重复上一个编辑动作</li>
+<li>qa：开始录制宏a（键盘操作记录）</li>
+<li>q：停止录制</li>
+<li>@a：播放宏a</li>
+</ul>
+<h1 id="12-编辑特殊文件"><a href="#12-编辑特殊文件" class="headerlink" title="12. 编辑特殊文件"></a>12. 编辑特殊文件</h1><h2 id="12-1-文件加解密"><a href="#12-1-文件加解密" class="headerlink" title="12.1 文件加解密"></a>12.1 文件加解密</h2><ul>
+<li>vim -x file: 开始编辑一个加密的文件。</li>
+<li>:X – 为当前文件设置密码。</li>
+<li>:set key= – 去除文件的密码。</li>
+</ul>
+<p><a href="http://www.cnblogs.com/jiqingwu/admin/vim-quick-edit.html" target="_blank" rel="noopener">这里是</a> 滇狐总结的比较高级的vi技巧。</p>
+<h2 id="12-2-文件的编码"><a href="#12-2-文件的编码" class="headerlink" title="12.2 文件的编码"></a>12.2 文件的编码</h2><ul>
+<li>:e ++enc=utf8 filename, 让vim用utf-8的编码打开这个文件。</li>
+<li>:w ++enc=gbk，不管当前文件什么编码，把它转存成gbk编码。</li>
+<li>:set fenc或:set fileencoding，查看当前文件的编码。</li>
+<li>在vimrc中添加set fileencoding=ucs-bom,utf-8,cp936，vim会根据要打开的文件选择合适的编码。 注意：编码之间不要留空格。 cp936对应于gbk编码。 ucs-bom对应于windows下的文件格式。</li>
+</ul>
+<p>让vim 正确处理文件格式和文件编码，有赖于 <a href="http://www.cnblogs.com/jiqingwu/admin/vimrc.html" target="_blank" rel="noopener">~/.vimrc的正确配置</a></p>
+<h2 id="12-3-文件格式"><a href="#12-3-文件格式" class="headerlink" title="12.3 文件格式"></a>12.3 文件格式</h2><p>大致有三种文件格式：unix, dos, mac. 三种格式的区别主要在于回车键的编码：dos 下是回车加换行，unix 下只有 换行符，mac 下只有回车符。</p>
+<ul>
+<li>:e ++ff=dos filename, 让vim用dos格式打开这个文件。</li>
+<li>:w ++ff=mac filename, 以mac格式存储这个文件。</li>
+<li>:set ff，显示当前文件的格式。</li>
+<li>在vimrc中添加set fileformats=unix,dos,mac，让vim自动识别文件格式。</li>
+</ul>
+<h1 id="13-编程辅助"><a href="#13-编程辅助" class="headerlink" title="13. 编程辅助"></a>13. 编程辅助</h1><h2 id="13-1-一些按键"><a href="#13-1-一些按键" class="headerlink" title="13.1 一些按键"></a>13.1 一些按键</h2><ul>
+<li>gd: 跳转到局部变量的定义处；</li>
+<li>gD: 跳转到全局变量的定义处，从当前文件开头开始搜索；</li>
+<li>g;: 上一个修改过的地方；</li>
+<li>g,: 下一个修改过的地方；</li>
+<li>[[: 跳转到上一个函数块开始，需要有单独一行的{。</li>
+<li>]]: 跳转到下一个函数块开始，需要有单独一行的{。</li>
+<li>[]: 跳转到上一个函数块结束，需要有单独一行的}。</li>
+<li>][: 跳转到下一个函数块结束，需要有单独一行的}。</li>
+<li>[{: 跳转到当前块开始处；</li>
+<li>]}: 跳转到当前块结束处；</li>
+<li>[/: 跳转到当前注释块开始处；</li>
+<li>]/: 跳转到当前注释块结束处；</li>
+<li>%: 不仅能移动到匹配的(),{}或[]上，而且能在#if，#else， #endif之间跳跃。</li>
+</ul>
+<p>下面的括号匹配对编程很实用的。</p>
+<ul>
+<li>ci’, di’, yi’：修改、剪切或复制’之间的内容。</li>
+<li>ca’, da’, ya’：修改、剪切或复制’之间的内容，包含’。</li>
+<li>ci”, di”, yi”：修改、剪切或复制”之间的内容。</li>
+<li>ca”, da”, ya”：修改、剪切或复制”之间的内容，包含”。</li>
+<li>ci(, di(, yi(：修改、剪切或复制()之间的内容。</li>
+<li>ca(, da(, ya(：修改、剪切或复制()之间的内容，包含()。</li>
+<li>ci[, di[, yi[：修改、剪切或复制[]之间的内容。</li>
+<li>ca[, da[, ya[：修改、剪切或复制[]之间的内容，包含[]。</li>
+<li>ci{, di{, yi{：修改、剪切或复制{}之间的内容。</li>
+<li>ca{, da{, ya{：修改、剪切或复制{}之间的内容，包含{}。</li>
+<li>ci&lt;, di&lt;, yi&lt;：修改、剪切或复制&lt;&gt;之间的内容。</li>
+<li>ca&lt;, da&lt;, ya&lt;：修改、剪切或复制&lt;&gt;之间的内容，包含&lt;&gt;。</li>
+</ul>
+<h2 id="13-2-ctags"><a href="#13-2-ctags" class="headerlink" title="13.2 ctags"></a>13.2 ctags</h2><ul>
+<li>ctags -R: 生成tag文件，-R表示也为子目录中的文件生成tags</li>
+<li>:set tags=path/tags – 告诉ctags使用哪个tag文件</li>
+<li>:tag xyz – 跳到xyz的定义处，或者将光标放在xyz上按C-]，返回用C-t</li>
+<li>:stag xyz – 用分割的窗口显示xyz的定义，或者C-w ]， 如果用C-w n ]，就会打开一个n行高的窗口</li>
+<li>:ptag xyz – 在预览窗口中打开xyz的定义，热键是C-w }。</li>
+<li>:pclose – 关闭预览窗口。热键是C-w z。</li>
+<li>:pedit abc.h – 在预览窗口中编辑abc.h</li>
+<li>:psearch abc – 搜索当前文件和当前文件include的文件，显示包含abc的行。</li>
+</ul>
+<p>有时一个tag可能有多个匹配，如函数重载，一个函数名就会有多个匹配。 这种情况会先跳转到第一个匹配处。</p>
+<ul>
+<li>:[n]tnext – 下一[n]个匹配。</li>
+<li>:[n]tprev – 上一[n]个匹配。</li>
+<li>:tfirst – 第一个匹配</li>
+<li>:tlast – 最后一个匹配</li>
+<li>:tselect tagname – 打开选择列表</li>
+</ul>
+<p>tab键补齐</p>
+<ul>
+<li>:tag xyz<tab> – 补齐以xyz开头的tag名，继续按tab键，会显示其他的。</tab></li>
+<li>:tag /xyz<tab> – 会用名字中含有xyz的tag名补全。</tab></li>
+</ul>
+<h2 id="13-3-cscope"><a href="#13-3-cscope" class="headerlink" title="13.3 cscope"></a>13.3 cscope</h2><ul>
+<li>cscope -Rbq: 生成cscope.out文件</li>
+<li>:cs add /path/to/cscope.out /your/work/dir</li>
+<li>:cs find c func – 查找func在哪些地方被调用</li>
+<li>:cw – 打开quickfix窗口查看结果</li>
+</ul>
+<h2 id="13-4-gtags"><a href="#13-4-gtags" class="headerlink" title="13.4 gtags"></a>13.4 gtags</h2><p>Gtags综合了ctags和cscope的功能。 使用Gtags之前，你需要安装GNU Gtags。 然后在工程目录运行 gtags 。</p>
+<ul>
+<li>:Gtags funcname 定位到 funcname 的定义处。</li>
+<li>:Gtags -r funcname 查询 funcname被引用的地方。</li>
+<li>:Gtags -s symbol 定位 symbol 出现的地方。</li>
+<li>:Gtags -g string Goto string 出现的地方。 :Gtags -gi string 忽略大小写。</li>
+<li>:Gtags -f filename 显示 filename 中的函数列表。 你可以用 :Gtags -f % 显示当前文件。</li>
+<li>:Gtags -P pattern 显示路径中包含特定模式的文件。 如 :Gtags -P .h$ 显示所有头文件， :Gtags -P /vm/ 显示vm目录下的文件。</li>
+</ul>
+<h2 id="13-5-编译"><a href="#13-5-编译" class="headerlink" title="13.5 编译"></a>13.5 编译</h2><p>vim提供了:make来编译程序，默认调用的是make， 如果你当前目录下有makefile，简单地:make即可。</p>
+<p>如果你没有make程序，你可以通过配置makeprg选项来更改make调用的程序。 如果你只有一个abc.<a href="http://lib.csdn.net/base/java" target="_blank" rel="noopener">Java</a>文件，你可以这样设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set makeprg=javac\ abc.java</span><br></pre></td></tr></table></figure>
+<p>然后:make即可。如果程序有错，可以通过quickfix窗口查看错误。 不过如果要正确定位错误，需要设置好errorformat，让vim识别错误信息。 如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:setl efm=%A%f:%l:\ %m,%-Z%p^,%-C%.%#</span><br></pre></td></tr></table></figure>
+<p>%f表示文件名，%l表示行号， %m表示错误信息，其它的还不能理解。 请参考 :help errorformat。</p>
+<h2 id="13-6-快速修改窗口"><a href="#13-6-快速修改窗口" class="headerlink" title="13.6 快速修改窗口"></a>13.6 快速修改窗口</h2><p>其实是quickfix插件提供的功能， 对编译调试程序非常有用 :)</p>
+<ul>
+<li>:copen – 打开快速修改窗口。</li>
+<li>:cclose – 关闭快速修改窗口。</li>
+</ul>
+<p>快速修改窗口在make程序时非常有用，当make之后：</p>
+<ul>
+<li>:cl – 在快速修改窗口中列出错误。</li>
+<li>:cn – 定位到下一个错误。</li>
+<li>:cp – 定位到上一个错误。</li>
+<li>:cr – 定位到第一个错误。</li>
+</ul>
+<h2 id="13-7-自动补全"><a href="#13-7-自动补全" class="headerlink" title="13.7 自动补全"></a>13.7 自动补全</h2><ul>
+<li>C-x C-s – 拼写建议。</li>
+<li>C-x C-v – 补全vim选项和命令。</li>
+<li>C-x C-l – 整行补全。</li>
+<li>C-x C-f – 自动补全文件路径。弹出菜单后，按C-f循环选择，当然也可以按 C-n和C-p。</li>
+<li>C-x C-p 和C-x C-n – 用文档中出现过的单词补全当前的词。 直接按C-p和C-n也可以。</li>
+<li>C-x C-o – 编程时可以补全关键字和函数名啊。</li>
+<li>C-x C-i – 根据头文件内关键字补全。</li>
+<li>C-x C-d – 补全宏定义。</li>
+<li>C-x C-n – 按缓冲区中出现过的关键字补全。 直接按C-n或C-p即可。</li>
+</ul>
+<p>当弹出补全菜单后：</p>
+<ul>
+<li>C-p 向前切换成员；</li>
+<li>C-n 向后切换成员；</li>
+<li>C-e 退出下拉菜单，并退回到原来录入的文字；</li>
+<li>C-y 退出下拉菜单，并接受当前选项。</li>
+</ul>
+<h2 id="13-8-多行缩进缩出"><a href="#13-8-多行缩进缩出" class="headerlink" title="13.8 多行缩进缩出"></a>13.8 多行缩进缩出</h2><ul>
+<li>正常模式下，按两下&gt;;光标所在行会缩进。</li>
+<li>如果先按了n，再按两下&gt;;，光标以下的n行会缩进。</li>
+<li>对应的，按两下&lt;;，光标所在行会缩出。</li>
+<li>如果在编辑代码文件，可以用=进行调整。</li>
+<li>在可视模式下，选择要调整的代码块，按=，代码会按书写规则缩排好。</li>
+<li>或者n =，调整n行代码的缩排。</li>
+</ul>
+<h2 id="13-9-折叠"><a href="#13-9-折叠" class="headerlink" title="13.9 折叠"></a>13.9 折叠</h2><ul>
+<li>zf – 创建折叠的命令，可以在一个可视区域上使用该命令；</li>
+<li>zd – 删除当前行的折叠；</li>
+<li>zD – 删除当前行的折叠；</li>
+<li>zfap – 折叠光标所在的段；</li>
+<li>zo – 打开折叠的文本；</li>
+<li>zc – 收起折叠；</li>
+<li>za – 打开/关闭当前折叠；</li>
+<li>zr – 打开嵌套的折行；</li>
+<li>zm – 收起嵌套的折行；</li>
+<li>zR (zO) – 打开所有折行；</li>
+<li>zM (zC) – 收起所有折行；</li>
+<li>zj – 跳到下一个折叠处；</li>
+<li>zk – 跳到上一个折叠处；</li>
+<li>zi – enable/disable fold;</li>
+</ul>
+<h1 id="14-命令行"><a href="#14-命令行" class="headerlink" title="14. 命令行"></a>14. 命令行</h1><p>normal模式下按:进入命令行模式</p>
+<h2 id="14-1-命令行模式下的快捷键："><a href="#14-1-命令行模式下的快捷键：" class="headerlink" title="14.1 命令行模式下的快捷键："></a>14.1 命令行模式下的快捷键：</h2><ul>
+<li>上下方向键：上一条或者下一条命令。如果已经输入了部分命令，则找上一 条或者下一条匹配的命令。</li>
+<li>左右方向键：左/右移一个字符。</li>
+<li>C-w： 向前删除一个单词。</li>
+<li>C-h： 向前删除一个字符，等同于Backspace。</li>
+<li>C-u： 从当前位置移动到命令行开头。</li>
+<li>C-b： 移动到命令行开头。</li>
+<li>C-e： 移动到命令行末尾。</li>
+<li>Shift-Left： 左移一个单词。</li>
+<li>Shift-Right： 右移一个单词。</li>
+<li>@： 重复上一次的冒号命令。</li>
+<li>q： 正常模式下，q然后按’:’，打开命令行历史缓冲区， 可以像编辑文件一样编辑命令。</li>
+<li>q/和q? 可以打开查找历史记录。</li>
+</ul>
+<h2 id="14-2-执行外部命令"><a href="#14-2-执行外部命令" class="headerlink" title="14.2 执行外部命令"></a>14.2 执行外部命令</h2><ul>
+<li>:! cmd 执行外部命令。</li>
+<li>:!! 执行上一次的外部命令。</li>
+<li>:sh 调用shell，用exit返回vim。</li>
+<li>:r !cmd 将命令的返回结果插入文件当前位置。</li>
+<li>:m,nw !cmd 将文件的m行到n行之间的内容做为命令输入执行命令。</li>
+</ul>
+<h1 id="15-其它"><a href="#15-其它" class="headerlink" title="15. 其它"></a>15. 其它</h1><h2 id="15-1-工作目录"><a href="#15-1-工作目录" class="headerlink" title="15.1 工作目录"></a>15.1 工作目录</h2><ul>
+<li>:pwd 显示vim的工作目录。</li>
+<li>:cd path 改变vim的工作目录。</li>
+<li>:set autochdir 可以让vim 根据编辑的文件自动切换工作目录。</li>
+</ul>
+<h2 id="15-2-一些快捷键（收集中）"><a href="#15-2-一些快捷键（收集中）" class="headerlink" title="15.2 一些快捷键（收集中）"></a>15.2 一些快捷键（收集中）</h2><ul>
+<li>K: 打开光标所在词的manpage。</li>
+<li>*: 向下搜索光标所在词。</li>
+<li>g*: 同上，但部分符合即可。</li>
+<li>#: 向上搜索光标所在词。</li>
+<li>g#: 同上，但部分符合即可。</li>
+<li>g C-g: 统计全文或统计部分的字数。</li>
+</ul>
+<h2 id="15-3-在线帮助"><a href="#15-3-在线帮助" class="headerlink" title="15.3 在线帮助"></a>15.3 在线帮助</h2><ul>
+<li>:h(elp)或F1 打开总的帮助。</li>
+<li>:help user-manual 打开用户手册。</li>
+<li>命令帮助的格式为：第一行指明怎么使用那个命令； 然后是缩进的一段解释这个命令的作用，然后是进一步的信息。</li>
+<li>:helptags somepath 为somepath中的文档生成索引。</li>
+<li>:helpgrep 可以搜索整个帮助文档，匹配的列表显示在quickfix窗口中。</li>
+<li>Ctrl+] 跳转到tag主题，Ctrl+t 跳回。</li>
+<li>:ver 显示版本信息。</li>
+</ul>
+<h2 id="15-4-一些小功能"><a href="#15-4-一些小功能" class="headerlink" title="15.4 一些小功能"></a>15.4 一些小功能</h2><ul>
+<li>简单计算器: 在插入模式下，输入C-r =，然后输入表达式，就能在 光标处得到计算结果。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/WechatIMG26.jpeg" alt="Mr. Lee 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vim常用命令/" rel="tag"><i class="fa fa-tag"></i> vim常用命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/08/Mysql主从配置/" rel="next" title="Mysql主从配置">
+                <i class="fa fa-chevron-left"></i> Mysql主从配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/avatar.png"
+                alt="Mr. Lee" />
+            
+              <p class="site-author-name" itemprop="name">Mr. Lee</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Leezhonglin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:380604322@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+
+              <ul class="links-of-blogroll-list">
+
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="https://my.csdn.net/jackfrued/" title="大 神" target="_blank">
+                        大 神
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="https://blog.csdn.net/qq_33196814" title="CSDN" target="_blank">
+                        CSDN
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://www.python.org" title="python" target="_blank">
+                        python
+                      </a>
+                    </span>
+                
+                    <span class="links-of-author-item" style="text-align:center">
+                      <a href="http://redisdoc.com/" title="redis" target="_blank">
+                        redis
+                      </a>
+                    </span>
+                
+
+              </ul>
+
+
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-关于Vim"><span class="nav-number">1.</span> <span class="nav-text">1. 关于Vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Vim的几种模式"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Vim的几种模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-启动Vim"><span class="nav-number">2.</span> <span class="nav-text">2. 启动Vim</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-文档操作"><span class="nav-number">3.</span> <span class="nav-text">3. 文档操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-光标的移动"><span class="nav-number">4.</span> <span class="nav-text">4. 光标的移动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-基本移动"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 基本移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-翻屏"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 翻屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-标记"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 标记</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-插入文本"><span class="nav-number">5.</span> <span class="nav-text">5. 插入文本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-基本插入"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 基本插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-改写插入"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 改写插入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-剪切复制和寄存器"><span class="nav-number">6.</span> <span class="nav-text">6. 剪切复制和寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-剪切和复制、粘贴"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 剪切和复制、粘贴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-文本对象"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 文本对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-寄存器"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 寄存器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-查找与替换"><span class="nav-number">7.</span> <span class="nav-text">7. 查找与替换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-查找"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-替换"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-正则表达式"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 正则表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-排版"><span class="nav-number">8.</span> <span class="nav-text">8. 排版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-基本排版"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 基本排版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-拼写检查"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 拼写检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-统计字数"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 统计字数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-编辑多个文件"><span class="nav-number">9.</span> <span class="nav-text">9. 编辑多个文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-一次编辑多个文件"><span class="nav-number">9.1.</span> <span class="nav-text">9.1 一次编辑多个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-多标签编辑"><span class="nav-number">9.2.</span> <span class="nav-text">9.2 多标签编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-缓冲区"><span class="nav-number">9.3.</span> <span class="nav-text">9.3 缓冲区</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-分屏编辑"><span class="nav-number">10.</span> <span class="nav-text">10. 分屏编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-水平分割"><span class="nav-number">10.1.</span> <span class="nav-text">10.1 水平分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-垂直分割"><span class="nav-number">10.2.</span> <span class="nav-text">10.2 垂直分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-关闭子窗口"><span class="nav-number">10.3.</span> <span class="nav-text">10.3 关闭子窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-4-调整窗口大小"><span class="nav-number">10.4.</span> <span class="nav-text">10.4 调整窗口大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-5-切换和移动窗口"><span class="nav-number">10.5.</span> <span class="nav-text">10.5 切换和移动窗口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-快速编辑"><span class="nav-number">11.</span> <span class="nav-text">11. 快速编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-改变大小写"><span class="nav-number">11.1.</span> <span class="nav-text">11.1 改变大小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-替换（normal模式）"><span class="nav-number">11.2.</span> <span class="nav-text">11.2 替换（normal模式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-撤消与重做（normal模式）"><span class="nav-number">11.3.</span> <span class="nav-text">11.3 撤消与重做（normal模式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-宏"><span class="nav-number">11.4.</span> <span class="nav-text">11.4 宏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-编辑特殊文件"><span class="nav-number">12.</span> <span class="nav-text">12. 编辑特殊文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-文件加解密"><span class="nav-number">12.1.</span> <span class="nav-text">12.1 文件加解密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-文件的编码"><span class="nav-number">12.2.</span> <span class="nav-text">12.2 文件的编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-3-文件格式"><span class="nav-number">12.3.</span> <span class="nav-text">12.3 文件格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-编程辅助"><span class="nav-number">13.</span> <span class="nav-text">13. 编程辅助</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-一些按键"><span class="nav-number">13.1.</span> <span class="nav-text">13.1 一些按键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-ctags"><span class="nav-number">13.2.</span> <span class="nav-text">13.2 ctags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-cscope"><span class="nav-number">13.3.</span> <span class="nav-text">13.3 cscope</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-gtags"><span class="nav-number">13.4.</span> <span class="nav-text">13.4 gtags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-编译"><span class="nav-number">13.5.</span> <span class="nav-text">13.5 编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-6-快速修改窗口"><span class="nav-number">13.6.</span> <span class="nav-text">13.6 快速修改窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-7-自动补全"><span class="nav-number">13.7.</span> <span class="nav-text">13.7 自动补全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-8-多行缩进缩出"><span class="nav-number">13.8.</span> <span class="nav-text">13.8 多行缩进缩出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-9-折叠"><span class="nav-number">13.9.</span> <span class="nav-text">13.9 折叠</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-命令行"><span class="nav-number">14.</span> <span class="nav-text">14. 命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-1-命令行模式下的快捷键："><span class="nav-number">14.1.</span> <span class="nav-text">14.1 命令行模式下的快捷键：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-2-执行外部命令"><span class="nav-number">14.2.</span> <span class="nav-text">14.2 执行外部命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-其它"><span class="nav-number">15.</span> <span class="nav-text">15. 其它</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#15-1-工作目录"><span class="nav-number">15.1.</span> <span class="nav-text">15.1 工作目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-2-一些快捷键（收集中）"><span class="nav-number">15.2.</span> <span class="nav-text">15.2 一些快捷键（收集中）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-3-在线帮助"><span class="nav-number">15.3.</span> <span class="nav-text">15.3 在线帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-4-一些小功能"><span class="nav-number">15.4.</span> <span class="nav-text">15.4 一些小功能</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr. Lee</span>
+
+  
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://github.com/Leezhonglin">Leezhonglin</a> 提供技术支持</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量:<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+</div>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共:51.7k字</span>
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
