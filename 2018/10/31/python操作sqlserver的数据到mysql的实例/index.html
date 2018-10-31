@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NSIS打包可安装的exe文件," />
+  <meta name="keywords" content="python操作sqlserver的数据到mysql的实例," />
 
 
 
@@ -79,45 +79,18 @@
 
 
 
-<meta name="description" content="​    接着上一篇文章最后的的内容开始。上面我们使用electron生成相应的项目文件包，只是一个绿色版本的应用，不一定是我们最喜欢的。懂软件的人使用起来还是比较简单。有一个需求是我们能不能打包成像qq微信这样下载下来可以自己安装，并且能选择自己喜欢的安装目录呢？ 答案肯定是可以的。接下来我们就开始我们的编译打包。 一、需要的工具 NSIS软件  下载地址：https://pan.baidu.c">
-<meta name="keywords" content="NSIS打包可安装的exe文件">
+<meta name="description" content="​    今天有这样一个需求，需要把Sqlserver中的多张表中的不同字段的数据写入到Mysql表中对应的数据表中去。这个可以难为人了。自己想了一个办法使用python来操作两个数据库。python都能很好的支持两种数据库的操作。 首先我们需要相应的库： 12pymysql 操作mysql数据库pymssql 操作sqlserver数据库 一 、安装相关库首先我们需要安装以上两个包，安装命令分别">
+<meta name="keywords" content="python操作sqlserver的数据到mysql的实例">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NSIS打包electron生成的文件为exe安装包">
-<meta property="og:url" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/index.html">
+<meta property="og:title" content="python操作sqlserver的数据到mysql的实例">
+<meta property="og:url" content="http://yoursite.com/2018/10/31/python操作sqlserver的数据到mysql的实例/index.html">
 <meta property="og:site_name" content="Mr. Lee&#39;s blog">
-<meta property="og:description" content="​    接着上一篇文章最后的的内容开始。上面我们使用electron生成相应的项目文件包，只是一个绿色版本的应用，不一定是我们最喜欢的。懂软件的人使用起来还是比较简单。有一个需求是我们能不能打包成像qq微信这样下载下来可以自己安装，并且能选择自己喜欢的安装目录呢？ 答案肯定是可以的。接下来我们就开始我们的编译打包。 一、需要的工具 NSIS软件  下载地址：https://pan.baidu.c">
+<meta property="og:description" content="​    今天有这样一个需求，需要把Sqlserver中的多张表中的不同字段的数据写入到Mysql表中对应的数据表中去。这个可以难为人了。自己想了一个办法使用python来操作两个数据库。python都能很好的支持两种数据库的操作。 首先我们需要相应的库： 12pymysql 操作mysql数据库pymssql 操作sqlserver数据库 一 、安装相关库首先我们需要安装以上两个包，安装命令分别">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/2.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/3.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/4.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/5.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/6.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/7.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/8.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/9.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/10.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/11.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/12.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/13.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/14.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/15.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/16.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/17.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/18.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/19.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/20.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/21.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/22.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/23.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/24.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/26.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/25.png">
-<meta property="og:updated_time" content="2018-10-25T13:13:28.000Z">
+<meta property="og:updated_time" content="2018-10-31T13:34:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSIS打包electron生成的文件为exe安装包">
-<meta name="twitter:description" content="​    接着上一篇文章最后的的内容开始。上面我们使用electron生成相应的项目文件包，只是一个绿色版本的应用，不一定是我们最喜欢的。懂软件的人使用起来还是比较简单。有一个需求是我们能不能打包成像qq微信这样下载下来可以自己安装，并且能选择自己喜欢的安装目录呢？ 答案肯定是可以的。接下来我们就开始我们的编译打包。 一、需要的工具 NSIS软件  下载地址：https://pan.baidu.c">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/1.png">
+<meta name="twitter:title" content="python操作sqlserver的数据到mysql的实例">
+<meta name="twitter:description" content="​    今天有这样一个需求，需要把Sqlserver中的多张表中的不同字段的数据写入到Mysql表中对应的数据表中去。这个可以难为人了。自己想了一个办法使用python来操作两个数据库。python都能很好的支持两种数据库的操作。 首先我们需要相应的库： 12pymysql 操作mysql数据库pymssql 操作sqlserver数据库 一 、安装相关库首先我们需要安装以上两个包，安装命令分别">
 
 
 
@@ -147,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/31/python操作sqlserver的数据到mysql的实例/"/>
 
 
 
 
 
-  <title>NSIS打包electron生成的文件为exe安装包 | Mr. Lee's blog</title>
+  <title>python操作sqlserver的数据到mysql的实例 | Mr. Lee's blog</title>
   
 
 
@@ -324,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/NSIS打包electron生成的文件为exe安装包/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/python操作sqlserver的数据到mysql的实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr. Lee">
@@ -341,7 +314,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">NSIS打包electron生成的文件为exe安装包</h2>
+          <h2 class="post-title" itemprop="name headline">python操作sqlserver的数据到mysql的实例</h2>
         
 
         <div class="post-meta">
@@ -353,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-25T21:02:29+08:00">
-                2018-10-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-31T21:32:52+08:00">
+                2018-10-31
               </time>
             
 
@@ -385,7 +358,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  838
+                  839
                 </span>
               
 
@@ -401,7 +374,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -422,73 +395,15 @@
       
 
       
-        <p>​    接着上一篇文章最后的的内容开始。上面我们使用electron生成相应的项目文件包，只是一个绿色版本的应用，不一定是我们最喜欢的。懂软件的人使用起来还是比较简单。有一个需求是我们能不能打包成像qq微信这样下载下来可以自己安装，并且能选择自己喜欢的安装目录呢？ 答案肯定是可以的。接下来我们就开始我们的编译打包。</p>
-<h5 id="一、需要的工具"><a href="#一、需要的工具" class="headerlink" title="一、需要的工具"></a>一、需要的工具</h5><ol>
-<li><p>NSIS软件 </p>
-<p>下载地址：<a href="https://pan.baidu.com/s/1mitSQU0" target="_blank" rel="noopener">https://pan.baidu.com/s/1mitSQU0</a></p>
-</li>
-<li><p>asar插件</p>
-<p>可以参考官方文档 <a href="https://www.w3cschool.cn/electronmanual/cexo1qkn.html" target="_blank" rel="noopener">地址</a></p>
-</li>
-</ol>
-<p>安装NSIS就直接下一步下一步就ok.</p>
-<p>安装asar的命令为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g asar</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\lzl\Desktop\test&gt; npm install -g asar</span><br><span class="line">C:\Users\lzl\AppData\Roaming\npm\asar -&gt; C:\Users\lzl\AppData\Roaming\npm\node_modules\asar\bin\asar.js</span><br><span class="line">+ asar@0.14.5</span><br><span class="line">updated 1 package in 12.708s</span><br><span class="line">PS C:\Users\lzl\Desktop\test&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="二、打包"><a href="#二、打包" class="headerlink" title="二、打包"></a>二、打包</h5><p>运行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asar pack ./index.html app.asar</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\lj\Desktop\test&gt; asar pack ./index.html app.asar</span><br><span class="line">PS C:\Users\lj\Desktop\test&gt;</span><br></pre></td></tr></table></figure>
-<p>然后将生成的<code>app.asar</code> 的文件拷贝到项目文件的<code>test\app\resources</code>文件夹下面</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/1.png" alt="1"></p>
-<h5 id="三、打开NSIS软件进行操作"><a href="#三、打开NSIS软件进行操作" class="headerlink" title="三、打开NSIS软件进行操作"></a>三、打开NSIS软件进行操作</h5><p>选择<code>HW VNISEdit</code>选项。</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/2.png" alt="2"></p>
-<p>来到如下界面</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/3.png" alt="3"></p>
-<p>选择文件—-》新建脚本向导</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/4.png" alt="4"></p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/5.png" alt="5"></p>
-<p>直接点击下一步。填写下面的信息</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/6.png" alt="6"></p>
-<p>填写好上面的信息后点击下一步。来选择安装程序的图标、安装程序文件名称、安装程序语言、用户图形界面、压缩算法等信息。</p>
-<p>我添加了一个ico图标<img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/7.png" alt="7"></p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/8.png" alt="8"></p>
-<p>其他设置选择了简体中文。然后在点击下一步。这一步默认处理</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/9.png" alt="9"></p>
-<p>然后在点击下一步，授权文件有就填，没有就填空白。</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/10.png" alt="10"></p>
-<p>然后在点击下一步，添加应用程序文件，默认两个文件选中，删除</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/11.png" alt="11"></p>
-<p>删除完默认的文件之后在点击添加按钮添加我们自己的文件</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/12.png" alt="12"></p>
-<p>选择自己已经编译好的<code>muise.exe</code>文件</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/13.png" alt="13"></p>
-<p>选好之后在点击确认。然后回到这个界面在点击添加目录按钮来添加整个要打包的目录。</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/14.png" alt="14"></p>
-<p>添加好打包的目录和他的子目录</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/15.png" alt="15"></p>
-<p>然后在点击确定，在回到当前页面</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/16.png" alt="16"></p>
-<p>在点击下一步进入应用程序图标的设置，这个地方可以根据自己的情况选择</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/17.png" alt="17"></p>
-<p>选择好之后在点击下一步。设置安装程序之后运行，默认就是我们打包后的启动程序</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/18.png" alt="18"></p>
-<p>在点击下一步，进入解除安装程序设置。我这里选择的默认</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/19.png" alt="19"></p>
-<p>点击下一步完成向导</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/20.png" alt="20"></p>
-<p>点击完成按钮，保存向导设置的nsi文件，位置自己指定。</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/21.png" alt="21"></p>
-<p>保存完成后就来在最初的主页面，就能看见我们刚才配置的信息。</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/22.png" alt="22"></p>
-<p>到了这一步了我们就可以开始编译了。点击有上面的编译并运行。</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/23.png" alt="23"></p>
-<p>等待程序编译结果。</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/24.png" alt="24"></p>
-<p>到了这一步我们的程序已经打包成功。点击下图是我们打包成功的效果图</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/26.png" alt="26"></p>
-<p>双击程序就可以开始安装</p>
-<p><img src="/2018/10/25/NSIS打包electron生成的文件为exe安装包/25.png" alt="25"></p>
-<p>原创出品，欢迎转载收藏。</p>
+        <p>​    今天有这样一个需求，需要把Sqlserver中的多张表中的不同字段的数据写入到Mysql表中对应的数据表中去。这个可以难为人了。自己想了一个办法使用python来操作两个数据库。python都能很好的支持两种数据库的操作。</p>
+<p>首先我们需要相应的库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pymysql 操作mysql数据库</span><br><span class="line">pymssql 操作sqlserver数据库</span><br></pre></td></tr></table></figure>
+<h5 id="一-、安装相关库"><a href="#一-、安装相关库" class="headerlink" title="一 、安装相关库"></a>一 、安装相关库</h5><p>首先我们需要安装以上两个包，安装命令分别为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql</span><br><span class="line">pip install pymssql</span><br></pre></td></tr></table></figure>
+<h5 id="二、建立相关python-文件"><a href="#二、建立相关python-文件" class="headerlink" title="二、建立相关python 文件"></a>二、建立相关python 文件</h5><p>下面就上来我们的第一个实例。代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymssql</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MSSQL</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    对pymssql的简单封装</span></span><br><span class="line"><span class="string">    使用该库时，需要在Sql Server Configuration Manager里面将TCP/IP协议开启</span></span><br><span class="line"><span class="string">    用法：</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,host,user,pwd,db)</span>:</span></span><br><span class="line">        self.host = host</span><br><span class="line">        self.user = user</span><br><span class="line">        self.pwd = pwd</span><br><span class="line">        self.db = db</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__GetConnect</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        得到连接信息</span></span><br><span class="line"><span class="string">        返回: conn.cursor()</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.db:</span><br><span class="line">            <span class="keyword">raise</span>(NameError,<span class="string">"没有设置数据库信息"</span>)</span><br><span class="line">        self.conn = pymssql.connect(host=self.host,user=self.user,password=self.pwd,database=self.db,charset=<span class="string">"utf8"</span>)</span><br><span class="line">        cur = self.conn.cursor()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> cur:</span><br><span class="line">            <span class="keyword">raise</span>(NameError,<span class="string">"连接数据库失败"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> cur</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ExecQuery</span><span class="params">(self,sql)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        执行查询语句</span></span><br><span class="line"><span class="string">        返回的是一个包含tuple的list，list的元素是记录行，tuple的元素是每行记录的字段</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        cur = self.__GetConnect()</span><br><span class="line">        cur.execute(sql)</span><br><span class="line">        resList = cur.fetchall()</span><br><span class="line"></span><br><span class="line">        <span class="comment">#查询完毕后必须关闭连接</span></span><br><span class="line">        self.conn.close()</span><br><span class="line">        <span class="keyword">return</span> resList</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ExecNonQuery</span><span class="params">(self,sql)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        执行非查询语句</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        cur = self.__GetConnect()</span><br><span class="line">        cur.execute(sql)</span><br><span class="line">        self.conn.commit()</span><br><span class="line">        self.conn.close()</span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## 调用案例</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    ms = MSSQL(host=<span class="string">"localhost"</span>,user=<span class="string">"sa"</span>,pwd=<span class="string">"P@ssword"</span>,db=<span class="string">"TP_TEST"</span>)</span><br><span class="line">    sql = <span class="string">'select T_JH.ID,T_JH.jhName,T_JHTemplate_SJ.TemplateID,T_JHTemplate_SJ.sjID,T_SJMB.sjName,T_JHTemplate.StartDate from T_JH LEFT JOIN T_JHTemplate on T_JH.ID = T_JHTemplate.JHId LEFT JOIN T_JHTemplate_SJ on T_JHTemplate_SJ.TemplateID = T_JHTemplate.Id LEFT JOIN T_SJMB on T_SJMB.Id = T_JHTemplate_SJ.sjID;'</span></span><br><span class="line">    <span class="keyword">return</span> ms.ExecQuery(sql)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#################################</span></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="comment"># mysql连接</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">connMySql</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,host,user,pwd,db,port)</span>:</span></span><br><span class="line">        self.host = host</span><br><span class="line">        self.user = user</span><br><span class="line">        self.pwd = pwd</span><br><span class="line">        self.db = db</span><br><span class="line">        self.port = port</span><br><span class="line">        </span><br><span class="line">	<span class="comment"># 执行插入数据函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_into_data</span><span class="params">(self,sql)</span>:</span></span><br><span class="line">        db = pymysql.connect(host=self.host, user=self.user, password=self.pwd, db=self.db, port=self.port)</span><br><span class="line">        cur = db.cursor()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            cur.execute(sql)</span><br><span class="line">            <span class="comment"># 提交</span></span><br><span class="line">            db.commit()</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="comment"># 错误回滚</span></span><br><span class="line">            db.rollback()</span><br><span class="line">        <span class="keyword">finally</span>:</span><br><span class="line">            db.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Changestamp</span><span class="params">(dt1)</span>:</span></span><br><span class="line">    <span class="comment"># datetime时间转为时间戳</span></span><br><span class="line">    Unixtime = time.mktime(time.strptime(dt1.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>), <span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br><span class="line">    <span class="keyword">return</span> Unixtime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 获取sqlserver数据</span></span><br><span class="line">    data = main()</span><br><span class="line">    <span class="comment"># 链接mysql</span></span><br><span class="line">    db = connMySql(host=<span class="string">'192.168.0.147'</span>,user=<span class="string">'test'</span>,pwd=<span class="string">'123456'</span>,db=<span class="string">'missionplan'</span>,port=<span class="number">3306</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> da <span class="keyword">in</span> data:</span><br><span class="line">        d1 = da[<span class="number">0</span>]</span><br><span class="line">        d2 = da[<span class="number">1</span>]</span><br><span class="line">        d3 = da[<span class="number">2</span>]</span><br><span class="line">        d4 = da[<span class="number">3</span>]</span><br><span class="line">        d5 = da[<span class="number">4</span>]</span><br><span class="line">        d6 = da[<span class="number">5</span>]</span><br><span class="line">        <span class="keyword">if</span>  d6 != <span class="keyword">None</span>:</span><br><span class="line">            d7 =Changestamp(d6)</span><br><span class="line">            sql = <span class="string">'''insert into planout(PlanId,PlanName,PlanVersion,EventId,EventName,StartTime) VALUES ('%s','%s','%s','%s','%s','%s');'''</span> %(d1,d2,d3,d4,d5,d7)</span><br><span class="line">            db.insert_into_data(sql)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sql = <span class="string">'''insert into planout(PlanId,PlanName,PlanVersion,EventId,EventName,StartTime) VALUES ('%s','%s','%s','%s','%s',NULL);'''</span> %(d1,d2,d3,d4,d5)</span><br><span class="line">            db.insert_into_data(sql)</span><br><span class="line">        print(<span class="string">'数据插入成功'</span>)</span><br></pre></td></tr></table></figure>
+<p>到此，一个完整的从sqlserver中查询初需要的数据，在完成mysql数据库的写入操作就完成了。</p>
+<p>原创出品，喜欢可以收藏转载哦！！！</p>
 <blockquote>
 <p>作者：lizhonglin</p>
 <p><strong>github:</strong> <a href="https://github.com/Leezhonglin/" target="_blank" rel="noopener">https://github.com/Leezhonglin/</a></p>
@@ -549,7 +464,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NSIS打包可安装的exe文件/" rel="tag"><i class="fa fa-tag"></i> NSIS打包可安装的exe文件</a>
+            <a href="/tags/python操作sqlserver的数据到mysql的实例/" rel="tag"><i class="fa fa-tag"></i> python操作sqlserver的数据到mysql的实例</a>
           
         </div>
       
@@ -562,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/24/使用electron构建基于html的桌面应用/" rel="next" title="使用electron构建基于html的桌面应用">
-                <i class="fa fa-chevron-left"></i> 使用electron构建基于html的桌面应用
+              <a href="/2018/10/25/使用Hbuilder构建跨平台的移动app/" rel="next" title="使用Hbuilder构建跨平台的移动app">
+                <i class="fa fa-chevron-left"></i> 使用Hbuilder构建跨平台的移动app
               </a>
             
           </div>
@@ -571,10 +486,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/25/使用Hbuilder构建跨平台的移动app/" rel="prev" title="使用Hbuilder构建跨平台的移动app">
-                使用Hbuilder构建跨平台的移动app <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -756,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、需要的工具"><span class="nav-number">1.</span> <span class="nav-text">一、需要的工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、打包"><span class="nav-number">2.</span> <span class="nav-text">二、打包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三、打开NSIS软件进行操作"><span class="nav-number">3.</span> <span class="nav-text">三、打开NSIS软件进行操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#一-、安装相关库"><span class="nav-number">1.</span> <span class="nav-text">一 、安装相关库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、建立相关python-文件"><span class="nav-number">2.</span> <span class="nav-text">二、建立相关python 文件</span></a></li></ol></div>
             
 
           </div>
